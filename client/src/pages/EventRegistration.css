@@ -1,0 +1,100 @@
+.eventreg-page-container {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #f0f4f8, #d9e8f5);
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.eventreg-page-container .header {
+    color: #2a4d69;
+    background-color: white;
+    padding: 40px 20px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.eventreg-page-container .header h1 {
+    font-size: 2.8em;
+    margin: 0 0 10px;
+}
+
+.eventreg-page-container .header p {
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.eventreg-page-container .registration-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+.eventreg-page-container .registration-container h2 {
+    color: #2a4d69;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.eventreg-page-container form {
+    text-align: left;
+}
+
+.eventreg-page-container form label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 5px;
+    color: #2a4d69;
+}
+
+.eventreg-page-container form input,
+.eventreg-page-container form select,
+.eventreg-page-container form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.eventreg-page-container form textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.eventreg-page-container form button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #2a7cda;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background 0.3s ease;
+}
+
+.eventreg-page-container form button[type="submit"]:hover {
+    background: #1856a0;
+}
+
+.eventreg-page-container .footer {
+    background: hsl(216, 60%, 36%);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9em;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+}

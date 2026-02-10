@@ -1,0 +1,101 @@
+.donation-page-container {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f0f4f8;
+    color: #333;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.donation-page-container .donation-nav {
+    width: 100%;
+    text-align: center;
+    background: #2b65b6;
+    padding: 15px 20px;
+    color: #fff;
+}
+
+.donation-page-container .donation-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    transition: opacity 0.3s ease;
+}
+
+.donation-page-container .donation-nav a:hover {
+    opacity: 0.8;
+}
+
+.donation-page-container .donation-form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+.donation-page-container .donation-form-container h1 {
+    color: #2a4d69;
+    text-align: center;
+}
+
+.donation-page-container .intro {
+    text-align: center;
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.donation-page-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.donation-page-container form input,
+.donation-page-container form textarea {
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+.donation-page-container form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.donation-page-container form button[type="submit"] {
+    background: #3772c5;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 1em;
+    transition: background 0.3s ease;
+}
+
+.donation-page-container form button[type="submit"]:hover {
+    background: #1a4f9a;
+}
+
+.donation-page-container .footer {
+    background: hsl(216, 60%, 36%);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.9em;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+    box-sizing: border-box;
+}

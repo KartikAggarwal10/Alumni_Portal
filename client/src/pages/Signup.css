@@ -1,0 +1,160 @@
+/* Signup Page Specific Styles - Extracted from signup.html */
+
+.signup-page-container * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.signup-page-container {
+    font-family: 'Roboto', sans-fonts;
+    background: linear-gradient(135deg, #f0f4f8, #d9e8f5);
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.signup-page-container a {
+    text-decoration: none;
+    color: #3783c2;
+    transition: color 0.3s ease;
+}
+
+.signup-page-container a:hover {
+    color: #1a73bb;
+}
+
+/* Header Section */
+.signup-page-container .header {
+    text-align: center;
+    padding: 20px 20px;
+    margin-top: 20px;
+    background: white;
+    color: black;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.signup-page-container .header h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+    color: #2a4d69;
+}
+
+.signup-page-container .header p {
+    font-size: 1.2em;
+}
+
+/* Signup Section */
+.signup-page-container .main-content {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.signup-page-container signup-container {
+    max-width: 900px;
+    width: 100%;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+}
+
+.signup-page-container .signup-image {
+    flex: 1;
+    background: url('https://iii tsonepat.ac.in/storage/sliders/1-20240720063928.untitled-design.jpg') no-repeat center center/cover;
+}
+
+.signup-page-container .signup-form {
+    flex: 1;
+    padding: 30px;
+}
+
+.signup-page-container .signup-form h2 {
+    font-size: 2em;
+    color: #2a4d69;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.signup-page-container .signup-form form {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 15px;
+    align-items: center;
+}
+
+.signup-page-container .signup-form label {
+    font-weight: bold;
+    color: #555;
+    text-align: right;
+}
+
+.signup-page-container .signup-form input {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+    width: 100%;
+}
+
+.signup-page-container .signup-form input:focus {
+    border-color: #63b7af;
+    outline: none;
+}
+
+.signup-page-container .signup-form button {
+    grid-column: span 2;
+    padding: 8px 12px;
+    background: hsl(216, 60%, 36%);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 60;
+    align-self: center;
+}
+
+.signup-page-container .signup-form button:hover {
+    background: hsl(216, 78%, 21%);
+}
+
+.signup-page-container .signup-form p {
+    grid-column: span 2;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1em;
+    color: #555;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .signup-page-container .signup-container {
+        flex-direction: column;
+    }
+
+    .signup-page-container .signup-image {
+        height: 200px;
+    }
+
+    .signup-page-container .signup-form form {
+        grid-template-columns: 1fr;
+    }
+
+    .signup-page-container .signup-form label {
+        text-align: left;
+    }
+
+    .signup-page-container .signup-form button {
+        width: 60%;
+    }
+}
