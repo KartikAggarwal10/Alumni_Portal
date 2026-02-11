@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
 import './Alumni.css';
-
 const Alumni = () => {
     const [alumniData, setAlumniData] = useState({});
     const [loading, setLoading] = useState(true);
@@ -87,42 +86,43 @@ const Alumni = () => {
             </div>
 
             {/* Alumni Directory Section */}
-            <div className="alumni-container" id="alumniContainer">
-                <h2 className="section-title">Alumni Directory</h2>
+          <div className="alumni-container" id="alumniContainer">
+    <h2 className="section-title">Alumni Directory</h2>
 
-                {Object.keys(alumniData).length === 0 ? (
-                    <p>No alumni data available yet.</p>
-                ) : (
-                    Object.keys(alumniData).map(batch => (
-                        <div key={batch} className="year-section">
-                            <div className="year-header" onClick={() => toggleBatch(batch)}>
-                                Batch {batch}
-                            </div>
-                            {expandedBatches[batch] && (
-                                <div className="branch-list">
-                                    {Object.keys(alumniData[batch]).map(branch => (
-                                        <div key={branch} className="branch-section">
-                                            <div className="branch-header" onClick={() => toggleBranch(batch, branch)}>
-                                                {branch}
-                                            </div>
-                                            {(expandedBranches[`${batch}-${branch}`]) && (
-                                                <div className="student-list">
-                                                    {alumniData[batch][branch].map((alumni, index) => (
-                                                        <div key={index} className="student-item" onClick={() => openModal(alumni)}>
-                                                            {alumni.name}
-                                                        </div>
-                                                    ))}
+    {Object.keys(alumniData).length === 0 ? (
+        <p>No alumni data available yet.</p>
+    ) : (
+        <div className="years-grid">
+            {Object.keys(alumniData).map(batch => (
+                <div key={batch} className="year-section">
+                    <div className="year-header" onClick={() => toggleBatch(batch)}>
+                        Batch {batch}
+                    </div>
+                    {expandedBatches[batch] && (
+                        <div className="branch-list">
+                            {Object.keys(alumniData[batch]).map(branch => (
+                                <div key={branch} className="branch-section">
+                                    <div className="branch-header" onClick={() => toggleBranch(batch, branch)}>
+                                        {branch}
+                                    </div>
+                                    {(expandedBranches[`${batch}-${branch}`]) && (
+                                        <div className="student-list">
+                                            {alumniData[batch][branch].map((alumni, index) => (
+                                                <div key={index} className="student-item" onClick={() => openModal(alumni)}>
+                                                    {alumni.name}
                                                 </div>
-                                            )}
+                                            ))}
                                         </div>
-                                    ))}
+                                    )}
                                 </div>
-                            )}
+                            ))}
                         </div>
-                    ))
-                )}
-            </div>
-
+                    )}
+                </div>
+            ))}
+        </div>
+    )}
+</div>
             {/* Modal for Alumni Details */}
             {selectedStudent && (
                 <div className="modal" onClick={closeModal}>
@@ -144,21 +144,6 @@ const Alumni = () => {
                     </div>
                 </div>
             )}
-
-            {/* Footer */}
-            <footer className="footer">
-                <div>
-                    <h2>Mentored by:</h2>
-                    Dr. Gourav Jain <br /> Assistant Professor at IIIT Sonepat
-                </div>
-                <div>© 2025 IIIT Sonepat Alumni Portal</div>
-                <div>
-                    <h2>Created by:</h2>
-                    Vineet Kumar Yadav ( 1<sup>st</sup> Year , IT ) <br />
-                    Kartik Aggrawal ( 1<sup>st</sup> Year , CSE ) <br />
-                    Ritik Raj Soni ( 1<sup>st</sup> Year , IT )
-                </div>
-            </footer>
         </div>
     );
 };

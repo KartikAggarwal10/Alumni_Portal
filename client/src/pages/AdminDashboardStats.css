@@ -1,0 +1,104 @@
+.add-achievement-container {
+  min-height: 100vh;
+  background: #f5f7fa;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+/* Header */
+.page-header {
+  background: #ffffff;
+  padding: 60px 40px;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.page-header h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.page-header p {
+  color: #64748b;
+  font-size: 1.05rem;
+  margin-top: 10px;
+}
+
+/* Card */
+.achievement-section {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 50px;
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* Form */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.form-group label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1e293b;
+}
+
+.form-group input {
+  padding: 14px 16px;
+  border-radius: 10px;
+  border: 1.5px solid #cbd5e1;
+  background: #f8fafc;
+  transition: 0.25s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #C25416;
+  box-shadow: 0 0 0 4px rgba(194, 84, 22, 0.15);
+  background: #ffffff;
+}
+
+/* Button */
+.submit-btn {
+  padding: 16px;
+  background: #C25416;
+  color: #ffffff;
+  font-weight: 700;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1.05rem;
+  transition: 0.25s ease;
+}
+
+.submit-btn:hover {
+  background: #cd723d;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .achievement-section {
+    margin: 30px 20px;
+    padding: 30px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header h1 {
+    font-size: 2rem;
+  }
+}

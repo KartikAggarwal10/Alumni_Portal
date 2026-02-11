@@ -33,7 +33,6 @@ const Login = () => {
             setError(err.response?.data || 'Login failed. Please check your credentials.');
         }
     };
-
     return (
         <div className="login-page-container">
             <div className="header">
@@ -42,7 +41,15 @@ const Login = () => {
             </div>
             <div className="main-content">
                 <div className="signup-container">
-                    <div className="signup-image"></div>
+                    <div className="signup-image">
+                         <section className="hero" style={{
+                backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(/public/Campus.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat'
+            }}>
+            </section>
+                    </div>
                     <div className="signup-form">
                         <h2>Login</h2>
                         {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -56,7 +63,6 @@ const Login = () => {
                                 required
                                 onChange={handleChange}
                             />
-
                             <label htmlFor="pswrd">Password</label>
                             <input
                                 type="password"
@@ -66,7 +72,6 @@ const Login = () => {
                                 required
                                 onChange={handleChange}
                             />
-
                             <button type="submit">Login</button>
                         </form>
                         <p>Don't have an account? <Link to="/signupt">Sign up</Link></p>
@@ -76,5 +81,4 @@ const Login = () => {
         </div>
     );
 };
-
 export default Login;

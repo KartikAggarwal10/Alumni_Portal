@@ -198,20 +198,7 @@ const Events = () => {
                 </div>
             )}
 
-            {/* Footer */}
-            <footer className="footer">
-                <div>
-                    <h2 className="mm">Mentored by:</h2>
-                    Dr. Gourav Jain <br /> Assistant Professor at IIIT Sonepat
-                </div>
-                <div>© 2025 IIIT Sonepat Alumni Portal</div>
-                <div>
-                    <h2 className="mm">Created by:</h2>
-                    Vineet Kumar Yadav ( 1<sup>st</sup> Year , IT ) <br />
-                    Kartik Aggrawal ( 1<sup>st</sup> Year , CSE ) <br />
-                    Ritik Raj Soni ( 1<sup>st</sup> Year , IT )
-                </div>
-            </footer>
+            
         </div>
     );
 };

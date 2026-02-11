@@ -7,7 +7,7 @@
 }
 
 .achievements-page-container .navbar {
-    background: hsl(216, 60%, 36%);
+    background: #C25416;
     color: white;
     padding: 15px 20px;
     display: flex;
@@ -67,7 +67,7 @@
 
 .achievements-page-container .achievements-section h1 {
     font-size: 3em;
-    color: #2a4d69;
+    color:#2a4d69;
     margin-bottom: 40px;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
@@ -90,6 +90,7 @@
     cursor: pointer;
     position: relative;
     overflow: hidden;
+    
 }
 
 .achievements-page-container .achievement-card::before {
@@ -99,7 +100,7 @@
     left: 0;
     width: 100%;
     height: 5px;
-    background: #3682ed;
+    background: #C25416;
     transition: all 0.3s ease;
 }
 
@@ -123,7 +124,7 @@
 
 .achievements-page-container .achievement-card h2 {
     font-size: 1.6em;
-    color: #1b5bb4;
+    color:#C25416;
     margin: 10px 0;
 }
 
@@ -148,7 +149,7 @@
     background: rgba(0, 0, 0, 0.7);
     justify-content: center;
     align-items: center;
-    z-index: 1000;
+    z-index: 3000;
 }
 
 .achievements-page-container .modal-content {
@@ -177,7 +178,7 @@
     right: 10px;
     font-size: 1.5em;
     cursor: pointer;
-    color: #3772c5;
+    color: #C25416;
     background: none;
     border: none;
 }
@@ -194,16 +195,6 @@
     }
 }
 
-.achievements-page-container .footer {
-    background: hsl(216, 60%, 36%);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    font-size: 0.9em;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-}
 
 @media (max-width: 768px) {
     .achievements-page-container .menu-toggle {

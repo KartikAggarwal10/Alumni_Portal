@@ -19,8 +19,8 @@ import { dmevt } from "./admin-events.js";
 import { vntmem } from "./event-mem.js";
 import { don } from "./dontion.js";
 import { dmgly } from "./admin-gallery.js";
-const port = 3000;
 let x;
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'people')
@@ -30,15 +30,18 @@ const storage = multer.diskStorage({
     cb(null, x)
   }
 })
+
 const upload = multer({ storage: storage })
 const app = express()
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 //app.use('/people', express.static(path.join(__dirname, 'people')));
-app.use(express.static(path.join(__dirname, 'alumni-email-system', 'public')));
+//app.use(express.static(path.join(__dirname, 'alumni-email-system', 'public')));
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "homee.html"));
 })
+
 app.use(cors({
   origin: true,        // 🔥 auto frontend origin allow karega
   credentials: true
@@ -49,8 +52,6 @@ app.use((req, res, next) => {
   res.setHeader("Cache-Control", "no-store");
   next();
 });
-
-
 
 app.use(session({
   secret: 'your-secret-key', // change this to a strong secret
@@ -72,8 +73,8 @@ mongoose.connect("mongodb://localhost:27017/alumni")
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'aggarwalkartik956@gmail.com',
-    pass: 'jjgv njvh jewo grhu'
+    user: 'kartikaggarwal102006@gmail.com',
+    pass: 'zbtf nomk nrbv hnps'
   }
 });
 function isAuthenticated(req, res, next) {
@@ -84,8 +85,7 @@ function isAuthenticated(req, res, next) {
     res.redirect('/login');
   }
 }
-
-// 📬 API endpoint to receive event proposals and send email
+// ===== FIX 1: Event Proposal =====
 app.post("/send-proposal", async (req, res) => {
   const {
     organizerName,
@@ -98,8 +98,9 @@ app.post("/send-proposal", async (req, res) => {
   } = req.body;
 
   const mailOptions = {
-    from: "your-email@gmail.com",
-    to: "recipient-email@example.com", // where proposals should go
+    from: 'kartikaggarwal102006@gmail.com', // ✅ Must be YOUR authenticated Gmail
+    to: 'kartikaggarwal102006@gmail.com',   // ✅ Where you receive emails
+    replyTo: organizerEmail,                 // ✅ Optional: user can reply to organizer
     subject: `New Event Proposal: ${eventTopic}`,
     html: `
       <h3>New Event Proposal Received</h3>
@@ -115,13 +116,126 @@ app.post("/send-proposal", async (req, res) => {
 
   try {
     await transporter.sendMail(mailOptions);
+    console.log('✅ Proposal email sent successfully');
     res.status(200).json({ message: "Proposal sent successfully!" });
   } catch (error) {
-    console.error("Error sending email:", error);
-    res.status(500).json({ message: "Failed to send proposal." });
+    console.error("❌ Error sending proposal email:", error);
+    res.status(500).json({ message: "Failed to send proposal.", error: error.message });
+  }
+});
+app.post("/donation", async (req, res) => {
+  const { 
+    name,
+    batch,
+    email,
+    amount,
+    purpose,
+    occupation,
+    message 
+  } = req.body;
+
+  const mailOptions = {
+    from: 'kartikaggarwal102006@gmail.com', // ✅ YOUR Gmail (authenticated)
+    to: 'kartikaggarwal102006@gmail.com',   // ✅ Where you receive donations
+    replyTo: email,                          // ✅ Donor's email for replies
+    subject: `💰 New Donation: ₹${amount} from ${name}`,
+    html: `
+      <h2>New Donation Received</h2>
+      <table border="1" cellpadding="10" style="border-collapse: collapse;">
+        <tr>
+          <td><strong>Name</strong></td>
+          <td>${name}</td>
+        </tr>
+        <tr>
+          <td><strong>Batch</strong></td>
+          <td>${batch}</td>
+        </tr>
+        <tr>
+          <td><strong>Email</strong></td>
+          <td>${email}</td>
+        </tr>
+        <tr>
+          <td><strong>Amount</strong></td>
+          <td>₹${amount}</td>
+        </tr>
+        <tr>
+          <td><strong>Purpose</strong></td>
+          <td>${purpose}</td>
+        </tr>
+        <tr>
+          <td><strong>Occupation</strong></td>
+          <td>${occupation}</td>
+        </tr>
+        <tr>
+          <td><strong>Message</strong></td>
+          <td>${message || 'N/A'}</td>
+        </tr>
+      </table>
+    `
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log('✅ Donation email sent successfully');
+    res.status(200).json({ message: "Donation submitted successfully!" });
+  } catch (error) {
+    console.error("❌ Error sending donation email:", error);
+    res.status(500).json({ message: "Failed to send donation.", error: error.message });
   }
 });
 
+// ===== FIX 3: Send Feedback =====
+app.post("/send-feedback", async (req, res) => {
+  const { name, email, subject, message } = req.body;
+
+  const mailOptions = {
+    from: 'kartikaggarwal102006@gmail.com', // ✅ YOUR Gmail
+    to: 'kartikaggarwal102006@gmail.com',   // ✅ Where you receive feedback
+    replyTo: email,                          // ✅ User's email for replies
+    subject: `📝 Feedback: ${subject}`,
+    html: `
+      <h3>New Feedback Submission</h3>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Subject:</strong> ${subject}</p>
+      <p><strong>Message:</strong><br>${message}</p>
+    `
+  };
+
+  try {
+    await transporter.sendMail(mailOptions);
+    console.log('✅ Feedback email sent successfully');
+    res.status(200).json({ message: "Feedback submitted successfully!" });
+  } catch (error) {
+    console.error("❌ Error sending feedback email:", error);
+    res.status(500).json({ message: "Failed to send feedback.", error: error.message });
+  }
+});
+
+// ===== FIX 4: Send Bulk Emails =====
+app.post('/send-emails', async (req, res) => {
+  const { subject, message, emails } = req.body;
+
+  if (!emails || emails.length === 0) {
+    return res.status(400).json({ error: 'No email addresses provided' });
+  }
+
+  const mailOptions = {
+    from: 'kartikaggarwal102006@gmail.com', // ✅ YOUR authenticated Gmail
+    to: emails.join(','),
+    subject: subject,
+    text: message
+  };
+
+  try {
+    const info = await transporter.sendMail(mailOptions);
+    console.log('✅ Bulk emails sent:', info.response);
+    res.json({ success: 'Emails sent successfully' });
+  } catch (error) {
+    console.error('❌ Error sending bulk emails:', error);
+    return res.status(500).json({ error: 'Failed to send email', details: error.message });
+  }
+});
 
 app.use("/uploads", express.static("uploads"));
 app.get('/signup', (req, res) => {
@@ -130,39 +244,65 @@ app.get('/signup', (req, res) => {
 app.get('/donation', isAuthenticated, (req, res) => {
   res.sendFile(path.join(__dirname, 'Donation-form.html'));
 })
-app.post("/donation", async (req, res) => {
-  const { name,
-    batch,
-    email,
-    amount,
-    purpose,
-    occupation,
-    message } = req.body;
-  const mailOptions = {
-    from: "your-email@gmail.com",
-    to: "recipient-email@example.com", // where proposals should go
-    subject: `donation by ${name}`,
-    html: `
-        <h3>New Event Proposal Received</h3>
-        <p><strong>Name:</strong> ${batch}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Batch:</strong> ${amount}</p>
-        <p><strong>Topic:</strong> ${purpose}</p>
-        <p><strong>Date:</strong> ${occupation}</p>
-        <p><strong>Type:</strong> ${message}</p>
-      `
-  };
+// app.post("/donation", async (req, res) => {
+//   const { 
+//     name,
+//     batch,
+//     email,
+//     amount,
+//     purpose,
+//     occupation,
+//     message 
+//   } = req.body;
 
-  try {
-    await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: "Proposal sent successfully!" });
-  } catch (error) {
-    console.error("Error sending email:", error);
-    res.status(500).json({ message: "Failed to send proposal." });
-  }
-});
-
-
+//   const mailOptions = {
+//     from: "kartikaggarwal102006@gmail.com",
+//     to: `${email}`,   // ✅ Where you receive donations
+//     replyTo: email,                          // ✅ Donor's email for replies
+//     subject: `💰 New Donation: ₹${amount} from ${name}`,
+//     html: `
+//       <h2>New Donation Received</h2>
+//       <table border="1" cellpadding="10" style="border-collapse: collapse;">
+//         <tr>
+//           <td><strong>Name</strong></td>
+//           <td>${name}</td>
+//         </tr>
+//         <tr>
+//           <td><strong>Batch</strong></td>
+//           <td>${batch}</td>
+//         </tr>
+//         <tr>
+//           <td><strong>Email</strong></td>
+//           <td>${email}</td>
+//         </tr>
+//         <tr>
+//           <td><strong>Amount</strong></td>
+//           <td>₹${amount}</td>
+//         </tr>
+//         <tr>
+//           <td><strong>Purpose</strong></td>
+//           <td>${purpose}</td>
+//         </tr>
+//         <tr>
+//           <td><strong>Occupation</strong></td>
+//           <td>${occupation}</td>
+//         </tr>
+//         <tr>
+//           <td><strong>Message</strong></td>
+//           <td>${message || 'N/A'}</td>
+//         </tr>
+//       </table>
+//     `
+//   };
+//   try {
+//     await transporter.sendMail(mailOptions);
+//     console.log('✅ Donation email sent successfully');
+//     res.status(200).json({ message: "Donation submitted successfully!" });
+//   } catch (error) {
+//     console.error("❌ Error sending donation email:", error);
+//     res.status(500).json({ message: "Failed to send donation.", error: error.message });
+//   }
+// });
 app.get('/dmin-upd', (req, res) => {
   res.sendFile(path.join(__dirname, "admin-update-stats.html"));
 })
@@ -188,8 +328,8 @@ app.post("/send-feedback", async (req, res) => {
   const { name, email, subject, message } = req.body;
 
   const mailOptions = {
-    from: "aggarwalkartik956@gmail.com", // your Gmail
-    to: "recipient-email@example.com", // 👈 Replace with your recipient
+    from: "kartikaggarwal102006@gmail.com",
+    to: `${email}`,
     subject: `Feedback Received: ${subject}`,
     html: `
       <h3>New Feedback Submission</h3>
@@ -314,7 +454,7 @@ app.post("/send-otp", async (req, res) => {
   req.session.otpEmail = email;
 
   const mailOptions = {
-    from: 'aggarwalkartik956@gmail.com',
+    from: 'kartikaggarwal102006@gmail.com',
     to: email,
     subject: "Your OTP for Alumni Registration",
     html: `<h3>Your OTP is: ${otp}</h3><p>This is valid for 10 minutes.</p>`
@@ -513,7 +653,6 @@ app.post("/signup", upload.single('photo'), async (req, res) => {
     const student = new stds({
       name, batch, location, branch, comp, position, email, photo: x, summary, id
     });
-
     await student.save();
     return res.status(200).json({ message: "Registered successfully!" });
   }
@@ -532,7 +671,6 @@ app.post("/signupt", async (req, res) => {
   if (email !== req.session.otpEmail || otp != req.session.otp) {
     return res.status(403).json({ message: "Invalid OTP" });
   }
-
   // Removed domain check for easier testing, or keep if required. 
   // User said "same features", so I should probably keep it but I'll relax it for now or keep it strict?
   // The original code had: if (email.includes("@iiitsonepat") && id === idc)
@@ -541,11 +679,9 @@ app.post("/signupt", async (req, res) => {
     const student = new stds({
       name, email, id, idc
     });
-
     await student.save();
     return res.status(200).json({ message: "Registered successfully!" });
   }
-
   return res.status(400).json({ message: "Invalid data or passwords do not match" });
 })
 app.post("/set-redirect", (req, res) => {
@@ -553,12 +689,10 @@ app.post("/set-redirect", (req, res) => {
   req.session.redirectTo = url;
   res.status(200).send("Redirect path set");
 });
-
 app.post("/login", async (req, res) => {
   const { email, pswrd } = req.body;
   try {
     const student = await stds.findOne({ email, pswrd });
-
     if (student) {
       req.session.loggedIn = true;
       req.session.userId = student._id; // Store user ID in session
@@ -576,15 +710,11 @@ app.post("/login", async (req, res) => {
     res.status(500).json({ success: false, message: "Server error" });
   }
 });
-
-
 app.post('/people', upload.single('photo'), async (req, res) => {
   const imageBuffer = fs.readFileSync(req.file.path);
   const { name, work, email, photo } = req.body;
   const pepl = new ppl({ name, work, email, photo: x });
-
   await pepl.save();
-
   return res.redirect("/");
 })
 app.post('/send-emails', (req, res) => {
@@ -593,16 +723,12 @@ app.post('/send-emails', (req, res) => {
   if (!emails || emails.length === 0) {
     return res.status(400).json({ error: 'No email addresses provided' });
   }
-
-  // Email options
   const mailOptions = {
     from: 'your-email@gmail.com', // Your email
     to: emails.join(','),         // Comma-separated list of recipient emails
     subject: subject,
     text: message
   };
-
-  // Send email
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error('Error sending email:', error);
@@ -612,7 +738,12 @@ app.post('/send-emails', (req, res) => {
     res.json({ success: 'Emails sent successfully' });
   });
 });
+// Make sure this comes AFTER all other API routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'alumni-email-system', 'public', 'index.html'));
+});
 
+const port=process.env.PORT
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server running at http://localhost:${port} or http://127.0.0.1:${port}`);
 });

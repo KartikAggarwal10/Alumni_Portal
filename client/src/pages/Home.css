@@ -77,7 +77,7 @@
 }
 
 .home-page-container .hero .btn {
-  background: #2c3c85;
+  background: #ff7f50;
   color: #fff;
   padding: 15px 30px;
   text-decoration: none;
@@ -91,7 +91,7 @@
 }
 
 .home-page-container .hero .btn:hover {
-  background: #132c7c;
+  background: #ff7f50;
   transform: scale(1.05);
   box-shadow: 0 0 15px rgba(34, 135, 212, 0.7);
 }
@@ -103,7 +103,7 @@
   position: absolute;
   width: 10px;
   height: 10px;
-  background: #3a8cea;
+  background: #ff7f50;
   border-radius: 50%;
   top: 50%;
   left: 50%;

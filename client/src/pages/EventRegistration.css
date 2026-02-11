@@ -1,100 +1,301 @@
 .eventreg-page-container {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #f0f4f8, #d9e8f5);
-    color: #333;
-    line-height: 1.6;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
 }
 
+/* ===== HEADER ===== */
 .eventreg-page-container .header {
-    color: #2a4d69;
-    background-color: white;
-    padding: 40px 20px;
-    margin-top: 20px;
-    text-align: center;
+  background: #ffffff;
+  padding: 70px 30px 50px;
+  text-align: center;
+  border-bottom: 1px solid #e5e9f0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .eventreg-page-container .header h1 {
-    font-size: 2.8em;
-    margin: 0 0 10px;
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: #1a2332;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
 }
 
 .eventreg-page-container .header p {
-    font-size: 1.2em;
-    margin: 0;
+  font-size: 1.15rem;
+  color: #64748b;
+  font-weight: 400;
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.6;
 }
 
+/* ===== MAIN FORM AREA ===== */
 .eventreg-page-container .registration-container {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 50px 60px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e5e9f0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
-.eventreg-page-container .registration-container h2 {
-    color: #2a4d69;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
+/* ===== FORM LAYOUT ===== */
 .eventreg-page-container form {
-    text-align: left;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px 40px;
 }
 
-.eventreg-page-container form label {
-    display: block;
-    font-weight: bold;
-    margin: 10px 0 5px;
-    color: #2a4d69;
+/* FULL WIDTH */
+.eventreg-page-container .full-width {
+  grid-column: 1 / -1;
 }
 
-.eventreg-page-container form input,
-.eventreg-page-container form select,
-.eventreg-page-container form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1em;
-    box-sizing: border-box;
+/* FORM GROUP */
+.eventreg-page-container .form-group {
+  display: flex;
+  flex-direction: column;
 }
 
-.eventreg-page-container form textarea {
-    min-height: 80px;
-    resize: vertical;
+/* LABEL */
+.eventreg-page-container label {
+  font-weight: 500;
+  font-size: 0.95rem;
+  color: #334155;
+  margin-bottom: 10px;
+  letter-spacing: 0.01em;
 }
 
-.eventreg-page-container form button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    background: #2a7cda;
-    color: #fff;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 1em;
-    transition: background 0.3s ease;
+/* Required indicator */
+.eventreg-page-container label.required::after {
+  content: ' *';
+  color: #dc2626;
 }
 
-.eventreg-page-container form button[type="submit"]:hover {
-    background: #1856a0;
+/* INPUTS */
+.eventreg-page-container input,
+.eventreg-page-container select,
+.eventreg-page-container textarea {
+  width: 100%;
+  padding: 13px 16px;
+  font-size: 0.98rem;
+  font-family: inherit;
+  color: #1e293b;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  transition: all 0.2s ease;
+  line-height: 1.5;
 }
 
-.eventreg-page-container .footer {
-    background: hsl(216, 60%, 36%);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    font-size: 0.9em;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    margin-top: auto;
+.eventreg-page-container input::placeholder,
+.eventreg-page-container textarea::placeholder {
+  color: #94a3b8;
+}
+
+.eventreg-page-container input:hover,
+.eventreg-page-container select:hover,
+.eventreg-page-container textarea:hover {
+  border-color: #94a3b8;
+}
+
+.eventreg-page-container input:focus,
+.eventreg-page-container select:focus,
+.eventreg-page-container textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.eventreg-page-container textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.eventreg-page-container select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2364748b' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+
+/* ===== BUTTON ===== */
+.eventreg-page-container button[type="submit"] {
+  grid-column: 1 / -1;
+  margin-top: 20px;
+  padding: 15px 40px;
+  background: #e26b6b;
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.25);
+  letter-spacing: 0.02em;
+}
+
+.eventreg-page-container button[type="submit"]:hover {
+  background:  #ef4444;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
+  transform: translateY(-1px);
+}
+
+.eventreg-page-container button[type="submit"]:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+}
+
+.eventreg-page-container button[type="submit"]:disabled {
+  background: #cbd5e1;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* ===== HELPER TEXT ===== */
+.eventreg-page-container .helper-text {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-top: 6px;
+}
+
+.eventreg-page-container .error-text {
+  font-size: 0.85rem;
+  color: #dc2626;
+  margin-top: 6px;
+}
+
+/* ===== TABLET (iPad, etc) ===== */
+@media (max-width: 1024px) {
+  .eventreg-page-container .registration-container {
+    max-width: 900px;
+    margin: 40px 30px;
+    padding: 40px 40px;
+  }
+
+  .eventreg-page-container form {
+    gap: 28px 32px;
+  }
+}
+
+/* ===== TABLET & SMALL DESKTOP ===== */
+@media (max-width: 900px) {
+  .eventreg-page-container .header {
+    padding: 60px 25px 45px;
+  }
+
+  .eventreg-page-container .header h1 {
+    font-size: 2.3rem;
+  }
+
+  .eventreg-page-container .header p {
+    font-size: 1.05rem;
+  }
+
+  .eventreg-page-container .registration-container {
+    margin: 35px 25px;
+    padding: 35px 30px;
+  }
+
+  .eventreg-page-container form {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  .eventreg-page-container .header {
+    padding: 50px 20px 40px;
+  }
+
+  .eventreg-page-container .header h1 {
+    font-size: 2rem;
+  }
+
+  .eventreg-page-container .header p {
+    font-size: 1rem;
+  }
+
+  .eventreg-page-container .registration-container {
+    margin: 25px 20px;
+    padding: 30px 24px;
+    border-radius: 10px;
+  }
+
+  .eventreg-page-container form {
+    gap: 24px;
+  }
+
+  .eventreg-page-container input,
+  .eventreg-page-container select,
+  .eventreg-page-container textarea {
+    padding: 12px 14px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .eventreg-page-container button[type="submit"] {
+    padding: 14px 32px;
+    font-size: 1rem;
+  }
+}
+
+/* ===== SMALL MOBILE ===== */
+@media (max-width: 400px) {
+  .eventreg-page-container .header h1 {
+    font-size: 1.75rem;
+  }
+
+  .eventreg-page-container .registration-container {
+    margin: 20px 15px;
+    padding: 25px 20px;
+  }
+}
+
+/* ===== VALIDATION STYLES ===== */
+.eventreg-page-container input:invalid:not(:placeholder-shown),
+.eventreg-page-container select:invalid:not(:placeholder-shown),
+.eventreg-page-container textarea:invalid:not(:placeholder-shown) {
+  border-color: #ef4444;
+}
+
+.eventreg-page-container input:valid:not(:placeholder-shown),
+.eventreg-page-container select:valid:not(:placeholder-shown),
+.eventreg-page-container textarea:valid:not(:placeholder-shown) {
+  border-color: #10b981;
+}
+
+/* ===== LOADING STATE ===== */
+.eventreg-page-container button[type="submit"].loading {
+  position: relative;
+  color: transparent;
+}
+
+.eventreg-page-container button[type="submit"].loading::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin-left: -10px;
+  margin-top: -10px;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spinner 0.8s linear infinite;
+}
+
+@keyframes spinner {
+  to { transform: rotate(360deg); }
 }

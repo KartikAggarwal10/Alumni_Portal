@@ -1,13 +1,20 @@
 import React from 'react';
+import "./Footer.css";
+
 const Footer = () => {
     return (
         <footer className="footer">
-            <p>&copy; 2024 IIIT Sonepat. All Rights Reserved.</p>
-            <div className="social-links">
-                <a href="#" style={{ color: 'white', margin: '0 10px' }}>Facebook</a>
-                <a href="#" style={{ color: 'white', margin: '0 10px' }}>Twitter</a>
-                <a href="#" style={{ color: 'white', margin: '0 10px' }}>LinkedIn</a>
-            </div>
+                <div>
+                    <h2>Mentored by:</h2>
+                    Dr. Gourav Jain <br /> Assistant Professor at IIIT Sonepat
+                </div>
+                <div>© 2025 IIIT Sonepat Alumni Portal</div>
+                <div>
+                    <h2>Created by:</h2>
+                    Vineet Kumar Yadav ( 2<sup>nd</sup> Year , IT ) <br />
+                    Kartik Aggrawal ( 2<sup>nd</sup> Year , CSE ) <br />
+                  
+                </div>
         </footer>
     );
 };

@@ -23,7 +23,6 @@ const Signup = () => {
             alert("Please enter an email first.");
             return;
         }
-
         try {
             const res = await api.post("/send-otp", { email: formData.email });
             alert(res.data.message);
@@ -92,6 +91,7 @@ const Signup = () => {
                     </div>
                 </div>
             </div>
+            this is originl one
         </div>
     );
 };

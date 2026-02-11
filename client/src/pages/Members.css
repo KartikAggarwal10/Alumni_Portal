@@ -29,7 +29,8 @@
 }
 
 .members-page-container .filter-sidebar h2 {
-    color: #2a4d69;
+    color: #C25416
+;
     font-size: 1.5em;
 }
 
@@ -48,7 +49,7 @@
 }
 
 .members-page-container .content h1 {
-    color: #2a4d69;
+    color: #C25416;
 }
 
 .members-page-container .members-list {
@@ -75,7 +76,7 @@
     width: 200px;
     height: 200px;
     border-radius: 100px;
-    border: 2px solid #3772c5;
+    border: 2px solid #C25416;
     margin-right: 15px;
     object-fit: cover;
     cursor: pointer;
@@ -88,7 +89,7 @@
 }
 
 .members-page-container .member-info h2 {
-    color: #2346ae;
+    color: #C25416;
     margin: 0 0 5px;
 }
 
@@ -110,7 +111,7 @@
 }
 
 .members-page-container .read-more {
-    color: #2346ae;
+    color: #C25416;
     cursor: pointer;
     font-weight: bold;
     margin-top: 5px;

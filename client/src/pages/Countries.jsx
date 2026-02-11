@@ -69,23 +69,7 @@ const Countries = () => {
     return (
         <div className="countries-page-container">
             {/* Navbar */}
-            <div className="navbar">
-                <div className="logo">
-                    <img src="/people/logo.webp" alt="IIIT Sonepat Logo" />
-                    IIIT Sonepat Alumni Portal
-                </div>
-                <button className="menu-toggle">≡</button>
-                <ul className="nav-links">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/events">Events</a></li>
-                    <li><a href="/alumni">Alumni</a></li>
-                    <li><a href="/giving">Contributions</a></li>
-                    <li><a href="/glr">Gallery</a></li>
-                    <li><a href="/contct">Contact</a></li>
-                    <li><a href="/login">Login</a></li>
-                </ul>
-            </div>
-
+            
             <section className="countries-section">
                 <h1>Alumni Locations Worldwide</h1>
                 <div id="map">
@@ -108,19 +92,7 @@ const Countries = () => {
             </section>
 
             {/* Footer */}
-            <footer className="footer">
-                <div>
-                    <h2>Mentored by:</h2>
-                    Dr. Gourav Jain <br /> Assistant Professor at IIIT Sonepat
-                </div>
-                <div>© 2025 IIIT Sonepat Alumni Portal</div>
-                <div>
-                    <h2>Created by:</h2>
-                    Vineet Kumar Yadav ( 1<sup>st</sup> Year , IT ) <br />
-                    Kartik Aggrawal ( 1<sup>st</sup> Year , CSE ) <br />
-                    Ritik Raj Soni ( 1<sup>st</sup> Year , IT )
-                </div>
-            </footer>
+            
         </div>
     );
 };

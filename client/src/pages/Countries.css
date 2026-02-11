@@ -1,5 +1,7 @@
 .countries-page-container {
     font-family: 'Arial', sans-serif;
+    top:30px;
+    position: sticky;
     margin: 0;
     padding: 0;
     background: linear-gradient(135deg, #f0f4f8, #d9e2ec);

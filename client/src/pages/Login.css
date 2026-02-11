@@ -18,12 +18,12 @@
 
 .login-page-container a {
     text-decoration: none;
-    color: #3e81b7;
+    color:#C25416;
     transition: color 0.3s ease;
 }
 
 .login-page-container a:hover {
-    color: #1160a0;
+    color:#b05f30;
 }
 
 /* Header Section */
@@ -112,7 +112,7 @@
 .login-page-container .signup-form button {
     grid-column: span 2;
     padding: 8px 12px;
-    background: hsl(216, 60%, 36%);
+    background: #C25416;
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -124,7 +124,7 @@
 }
 
 .login-page-container .signup-form button:hover {
-    background: hsl(216, 78%, 21%);
+    background:#d36a2d;
 }
 
 .login-page-container .signup-form p {

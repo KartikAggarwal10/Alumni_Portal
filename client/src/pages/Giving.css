@@ -140,18 +140,19 @@
 }
 
 .giving-page-container #batchList {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 20px;
     align-items: center;
-    justify-content: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .giving-page-container .batch-section {
     background: #fff;
-    margin-bottom: 20px;
     border-radius: 10px;
     box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-    width: 60%;
 }
 
 .giving-page-container .batch-header {
@@ -211,13 +212,29 @@
     justify-content: space-between;
 }
 
+@media (max-width: 1200px) {
+    .giving-page-container #batchList {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
 @media (max-width: 768px) {
     .giving-page-container .slideshow-container {
         max-height: 60vh;
     }
 
+    .giving-page-container .slide {
+        height: 300px;
+    }
+
+    .giving-page-container .giving-section {
+        padding: 10px;
+        margin: 10px auto;
+    }
+
     .giving-page-container .header-section {
         padding: 30px 10px;
+        margin-bottom: 20px;
     }
 
     .giving-page-container .header-section h1 {
@@ -233,13 +250,101 @@
         font-size: 1.5em;
     }
 
-    .giving-page-container .donation-item,
-    .giving-page-container .batch-section {
+    .giving-page-container .recentList {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .giving-page-container .donation-item {
+        width: 100%;
+        max-width: 350px;
         margin-bottom: 15px;
+    }
+
+    .giving-page-container #batchList {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        width: 95%;
+    }
+
+    .giving-page-container .batch-section {
+        margin-bottom: 0;
+        width: 100%;
+    }
+
+    .giving-page-container .batch-header {
+        font-size: 1.1em;
+        padding: 12px;
+    }
+
+    .giving-page-container .batch-donations {
+        padding: 10px;
+    }
+
+    .giving-page-container .donation-details {
+        padding: 12px;
     }
 
     .giving-page-container .donate-btn {
         padding: 10px 20px;
         font-size: 1em;
+        width: 80%;
+        max-width: 300px;
+    }
+
+    .giving-page-container .footer {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px 10px;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .giving-page-container .header-section h1 {
+        font-size: 1.6em;
+    }
+
+    .giving-page-container .header-section p {
+        font-size: 1em;
+    }
+
+    .giving-page-container .recent-donations h2,
+    .giving-page-container .batch-list h2 {
+        font-size: 1.3em;
+    }
+
+    .giving-page-container .slide {
+        height: 250px;
+    }
+
+    .giving-page-container .prev,
+    .giving-page-container .next {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .giving-page-container #batchList {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .giving-page-container .donation-item {
+        width: 100%;
+    }
+
+    .giving-page-container .batch-header {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    .giving-page-container .donation-details p {
+        font-size: 0.9em;
+    }
+
+    .giving-page-container .donate-btn {
+        padding: 8px 15px;
+        font-size: 0.9em;
+        width: 90%;
     }
 }

@@ -1,231 +1,10 @@
-.companies-page-container {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(135deg, #f0f4f8, #d9e8f5);
-    min-height: 100vh;
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, #f0f4f8, #d9e8f5);
 }
 
-.companies-page-container .navbar {
-    background: hsl(216, 60%, 36%);
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-}
-
-.companies-page-container .navbar .logo {
-    font-size: 1.5em;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-}
-
-.companies-page-container .navbar .logo img {
-    height: 35px;
-    margin-right: 10px;
-    border-radius: 5px;
-}
-
-.companies-page-container .nav-links {
-    display: flex;
-    gap: 15px;
-    list-style: none;
-    margin: 0;
-}
-
-.companies-page-container .nav-links a {
-    color: white;
-    text-decoration: none;
-    padding: 8px 15px;
-    border-radius: 20px;
-    transition: background 0.3s ease;
-}
-
-.companies-page-container .nav-links a:hover {
-    background: hsl(216, 97%, 23%);
-}
-
-.companies-page-container .menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.8em;
-    cursor: pointer;
-}
-
-.companies-page-container .companies-section {
-    padding: 50px 20px;
-    text-align: center;
-    background: linear-gradient(135deg, #f2f7f6, #d9e4dd);
-}
-
-.companies-page-container .companies-section h2 {
-    font-size: 2.2em;
-    color: #2a4d69;
-    margin-bottom: 30px;
-}
-
-.companies-page-container .company-list {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.companies-page-container .company-card {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
-    width: 200px;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.companies-page-container .company-card:hover {
-    transform: translateY(-5px);
-}
-
-.companies-page-container .company-card h3 {
-    font-size: 1.5em;
-    color: #2a64b5;
-    margin: 0;
-    text-align: center;
-}
-
-.companies-page-container .alumni-popup,
-.companies-page-container .alumni-detail-popup {
-    display: block;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-    max-width: 500px;
-    max-height: 80vh;
-    overflow-y: auto;
-    z-index: 1000;
-}
-
-.companies-page-container .alumni-popup h3,
-.companies-page-container .alumni-detail-popup h3 {
-    font-size: 1.8em;
-    color: #2a4d69;
-    margin-top: 0;
-}
-
-.companies-page-container .alumni-list {
-    list-style: none;
-    padding: 0;
-}
-
-.companies-page-container .alumni-list li {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    color: #555;
-    cursor: pointer;
-}
-
-.companies-page-container .alumni-list li:hover {
-    background: #f5f5f5;
-}
-
-.companies-page-container .alumni-detail-popup p {
-    margin: 10px 0;
-    color: #666;
-}
-
-.companies-page-container .alumni-detail-popup img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-bottom: 15px;
-}
-
-.companies-page-container .close-btn {
-    background: #3772c5;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.companies-page-container .close-btn:hover {
-    background: #164991;
-}
-
-.companies-page-container .overlay {
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-}
-
-.companies-page-container .footer {
-    background: hsl(216, 60%, 36%);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    font-size: 0.9em;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-}
-
-@media (max-width: 768px) {
-    .companies-page-container .menu-toggle {
-        display: block;
-    }
-
-    .companies-page-container .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: #2a4d69;
-        padding: 20px;
-    }
-
-    .companies-page-container .nav-links.active {
-        display: flex;
-    }
-
-    .companies-page-container .company-card {
-        width: 80%;
-    }
-}
-.companies-page-container .companies-section {
-  min-height: calc(100vh - 120px);
-}
-
-.companies-page-container .footer {
-  margin-top: 40px;
-}
-.companies-page-container .alumni-list li {
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    color: #555; 
-     cursor: pointer;
-    font-size: 16px;
-}
+/* Section */
 .companies-section {
   padding: 50px 20px;
   text-align: center;
@@ -234,10 +13,11 @@
 
 .companies-section h2 {
   font-size: 2.2em;
-  color: #2a4d69;
+  color:#2a4d69;
   margin-bottom: 30px;
 }
 
+/* Company cards */
 .company-list {
   display: flex;
   justify-content: center;
@@ -261,220 +41,91 @@
 
 .company-card h3 {
   font-size: 1.5em;
-  color: #2a64b5;
+  color: #C25416;
   margin: 0;
-  text-align: center;
 }
-  /* .navbar {
-    background: hsl(216, 60%, 36%);
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+/* Popups */
+.alumni-popup,
+.alumni-detail-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  z-index: 3000;
+}
+
+.alumni-popup h3,
+.alumni-detail-popup h3 {
+  font-size: 1.8em;
+  color: #C25416;
+  margin-top: 0;
+}
+
+/* Alumni list */
+.alumni-list {
+  list-style: none;
+  padding: 0;
+}
+
+.alumni-list li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  color: #555;
+  cursor: pointer;
+}
+
+.alumni-list li:hover {
+  background: #f5f5f5;
+}
+
+/* Alumni detail */
+.alumni-detail-popup img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+
+}
+
+.alumni-detail-popup p {
+  margin: 10px 0;
+  color: #666;
+}
+
+/* Button */
+.close-btn {
+  background:#C25416;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.close-btn:hover {
+  background: #e27916;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .company-card {
+    width: 80%;
   }
-
-  .navbar .logo {
-    font-size: 1.5em;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-  }
-
-  .navbar .logo img {
-    height: 35px;
-    margin-right: 10px;
-    border-radius: 5px;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 15px;
-    list-style: none;
-    margin: 0;
-  }
-
-  .nav-links a {
-    color: white;
-    text-decoration: none;
-    padding: 8px 15px;
-    border-radius: 20px;
-    transition: background 0.3s ease;
-  }
-
-  .nav-links a:hover {
-    background: hsl(216, 97%, 23%);
-  }
-
-  .menu-toggle {
-    display: none;
-    background: none;
-    border: none;
-    color: #fff;
-    font-size: 1.8em;
-    cursor: pointer;
-  }
-  .footer {
-    background:hsl(216, 60%, 36%);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    font-size: 0.9em;
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-
-  }
-  .container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-  }
-       
-    body {
-      font-family: 'Arial', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #f0f4f8, #d9e8f5);
-    }
-
-    
-
-    .companies-section {
-      padding: 50px 20px;
-      text-align: center;
-      background: linear-gradient(135deg, #f2f7f6, #d9e4dd);
-    }
-
-    .companies-section h2 {
-      font-size: 2.2em;
-      color: #2a4d69;
-      margin-bottom: 30px;
-    }
-
-    .company-list {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .company-card {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
-      width: 200px;
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-
-    .company-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .company-card h3 {
-      font-size: 1.5em;
-      color: #2a64b5;
-      margin: 0;
-      text-align: center;
-    }
-
-    .alumni-popup, .alumni-detail-popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-      max-width: 500px;
-      max-height: 80vh;
-      overflow-y: auto;
-      z-index: 1000;
-    }
-
-    .alumni-popup h3, .alumni-detail-popup h3 {
-      font-size: 1.8em;
-      color: #2a4d69;
-      margin-top: 0;
-    }
-
-    .alumni-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    .alumni-list li {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-      color: #555;
-      cursor: pointer;
-    }
-
-    .alumni-list li:hover {
-      background: #f5f5f5;
-    }
-
-    .alumni-detail-popup p {
-      margin: 10px 0;
-      color: #666;
-    }
-
-    .close-btn {
-      background: #3772c5;
-      color: #fff;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 20px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-
-    .close-btn:hover {
-      background: #164991;
-    }
-
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 999;
-    }
-
-    
-
-    @media (max-width: 768px) {
-      .menu-toggle {
-        display: block;
-      }
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: #2a4d69;
-        padding: 20px;
-      }
-      .nav-links.active {
-        display: flex;
-      }
-      .company-card {
-        width: 80%;
-      }
-    } */
+}

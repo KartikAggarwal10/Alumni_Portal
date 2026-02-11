@@ -1,37 +1,38 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import "./Navbar.css";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
-const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const isLoggedIn = false; // Placeholder for auth state
+export default function Navbar() {
+  const [open, setOpen] = useState(false);
 
-    return (
-        <nav className="navbar">
-            <div className="logo">
-                <img src="/people/logo.webp" alt="IIIT Sonepat Logo" style={{ height: '35px', marginRight: '10px', borderRadius: '5px' }} />
-                IIIT Sonepat Alumni Portal
-            </div>
-            <ul className={`nav-links ${isOpen ? 'active' : ''}`} id="navLinks">
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/events">Events</Link></li>
-                <li><Link to="/alumni">Alumni</Link></li>
-                <li><Link to="/giving">Contributions</Link></li>
-                <li><Link to="/glr">Gallery</Link></li>
-                <li><Link to="/contct">Contact</Link></li>
-                <li><Link to="/members">Members</Link></li>
-                <li><Link to="/companies">Companies</Link></li>
-                <li><Link to="/countries">Map</Link></li>
-                <li><Link to="/ach">Achievements</Link></li>
-                <li><Link to="/peopledisp">People</Link></li>
-                <li id="authLink">
-                    <Link to="/login">Login</Link>
-                </li>
-            </ul>
-            <button className="menu-toggle" id="menuToggle" onClick={() => setIsOpen(!isOpen)}>
-                ☰
-            </button>
-        </nav>
-    );
-};
+  return (
+    <>
+      {/* ===== TOP HEADER ===== */}
+      <header className="top-header">
+        <img src="/Header.png" alt="Institute Header" />
+      </header>
 
-export default Navbar;
+      {/* ===== NAVBAR ===== */}
+      <nav className="navbar">
+        <div className="navbar-inner">
+          <button
+            className="menu-toggle"
+            onClick={() => setOpen(!open)}
+          >
+            ≡
+          </button>
+
+          <ul className={`nav-links ${open ? "active" : ""}`}>
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/events">Events</Link></li>
+            <li><Link to="/alumni">Alumni</Link></li>
+            <li><Link to="/giving">Contributions</Link></li>
+            <li><Link to="/glr">Gallery</Link></li>
+            <li><Link to="/contct">Contact</Link></li>
+            <li><Link to="/login">Login</Link></li>
+          </ul>
+        </div>
+      </nav>
+    </>
+  );
+}
