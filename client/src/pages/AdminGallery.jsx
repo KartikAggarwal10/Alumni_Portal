@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./AdminGallery.css";
+import api from "../api";
+
 
 const AdminGallery = () => {
   const [galleryItems, setGalleryItems] = useState([]);
@@ -15,9 +17,8 @@ const AdminGallery = () => {
 
   const fetchGalleryItems = async () => {
     try {
-      const res = await fetch("http://localhost:3000/gallerypi");
-      const data = await res.json();
-      setGalleryItems(data.items || []);
+      const res = await api.get("/gallerypi");
+      setGalleryItems(res.data.items || []);
     } catch (err) {
       console.error("Error loading gallery:", err);
     }

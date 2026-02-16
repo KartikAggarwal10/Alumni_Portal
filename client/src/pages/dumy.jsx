@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Home.css";
+import api from "../api";
 
 /* ---------- Counter Hook ---------- */
 function useCounter(target, duration = 1200) {
@@ -36,9 +37,9 @@ export default function Dummy() {
 
   /* ---------- Fetch from Backend ---------- */
   useEffect(() => {
-    fetch("http://localhost:3000/updte")
-      .then(res => res.json())
-      .then(data => {
+    api.get("/updte")
+      .then(res => {
+        const data = res.data;
         if (data?.event) {
           setStats({
             member: data.event.member,

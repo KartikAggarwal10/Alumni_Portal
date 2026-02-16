@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./DashboardStats.module.css";
+import api from "../api";
 
 export default function DashboardStats() {
     const navigate = useNavigate();
@@ -25,9 +26,9 @@ export default function DashboardStats() {
 
         // Fetch Dashboard Stats from /updte
         function loadDashboardStats() {
-            fetch("/updte")
-                .then(res => res.json())
-                .then(data => {
+            api.get("/updte")
+                .then(res => {
+                    const data = res.data;
                     const event = data.event;
                     console.log("event->", event);
                     if (event) {

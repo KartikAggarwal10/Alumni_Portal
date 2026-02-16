@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
+import api from "../api";
 import HomeSlider from "./slider";
 export default function Home() {
     const navigate = useNavigate();
@@ -32,9 +33,9 @@ export default function Home() {
 
         // Fetch Dashboard Stats from /updte
         function loadDashboardStats() {
-            fetch("/updte")
-                .then(res => res.json())
-                .then(data => {
+            api.get("/updte")
+                .then(res => {
+                    const data = res.data;
                     const event = data.event;
                     console.log("event->", event);
                     if (event) {
@@ -68,9 +69,9 @@ export default function Home() {
             updatesContainer.innerHTML = "";
 
             Promise.all([
-                fetch("/dmvnt-pi").then(res => res.json()),
-                fetch("/donationpi").then(res => res.json()),
-                fetch("/add-ach-api").then(res => res.json())
+                api.get("/dmvnt-pi").then(res => res.data),
+                api.get("/donationpi").then(res => res.data),
+                api.get("/add-ach-api").then(res => res.data)
             ])
                 .then(([eventData, donationData, achievementData]) => {
                     // Clear again to ensure no duplicates

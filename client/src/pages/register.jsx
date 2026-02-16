@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import "./register.css";
+import api from "../api";
+
 export default function AlumniRegister() {
   const [formData, setFormData] = useState({
     name: "",
@@ -37,14 +39,8 @@ export default function AlumniRegister() {
     }
 
     try {
-      const res = await fetch("http://localhost:3000/send-otp", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: formData.email })
-      });
-
-      const data = await res.json();
-      alert(data.message);
+      const res = await api.post("/send-otp", { email: formData.email });
+      alert(res.data.message);
     } catch (err) {
       console.error(err);
       alert("Failed to send OTP");
@@ -149,8 +145,8 @@ export default function AlumniRegister() {
         </div>
       </section>
 
-      
-      
+
+
     </>
   );
 }

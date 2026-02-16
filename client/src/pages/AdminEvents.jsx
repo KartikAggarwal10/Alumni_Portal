@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./AdminEvents.css";
+import api from "../api";
+
 
 const AdminEvents = () => {
   const [events, setEvents] = useState([]);
@@ -15,8 +17,8 @@ const AdminEvents = () => {
 
   const loadCurrentEvents = async () => {
     try {
-      const res = await fetch("http://localhost:3000/dmvnt-PI");
-      const data = await res.json();
+      const res = await api.get("/dmvnt-PI");
+      const data = res.data;
 
       const today = new Date();
       const upcomingEvents = (data.events || [])

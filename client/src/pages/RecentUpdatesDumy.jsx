@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../api";
 import styles from "./Recentupdates.module.css";
 
 export default function RecentUpdates() {
@@ -18,9 +19,9 @@ export default function RecentUpdates() {
             updatesContainer.innerHTML = "";
 
             Promise.all([
-                fetch("/dmvnt-pi").then(res => res.json()),
-                fetch("/donationpi").then(res => res.json()),
-                fetch("/add-ach-api").then(res => res.json())
+                api.get("/dmvnt-pi").then(res => res.data),
+                api.get("/donationpi").then(res => res.data),
+                api.get("/add-ach-api").then(res => res.data)
             ])
                 .then(([eventData, donationData, achievementData]) => {
                     // Clear again to ensure no duplicates

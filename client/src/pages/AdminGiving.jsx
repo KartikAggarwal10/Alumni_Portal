@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./AdminGiving.css";
+import api from "../api";
+
 
 const AdminGiving = () => {
   const [donations, setDonations] = useState([]);
@@ -19,9 +21,8 @@ const AdminGiving = () => {
 
   const fetchDonations = async () => {
     try {
-      const res = await fetch("http://localhost:3000/donationpi");
-      const data = await res.json();
-      setDonations(data.events || []);
+      const res = await api.get("/donationpi");
+      setDonations(res.data.events || []);
     } catch (err) {
       console.error("Error fetching donations:", err);
     }
@@ -32,37 +33,30 @@ const AdminGiving = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  try {
-    const res = await fetch("http://localhost:3000/admin-fill-giving", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    try {
+      const res = await api.post("/admin-fill-giving", formData);
 
-    const data = await res.json();
-    alert(data.message);
+      alert(res.data.message);
 
-    fetchDonations(); // refresh list after adding
+      fetchDonations(); // refresh list after adding
 
-    setFormData({
-      name: "",
-      email: "",
-      batch: "",
-      amount: "",
-      purpose: "",
-      occupation: "",
-      message: "",
-    });
+      setFormData({
+        name: "",
+        email: "",
+        batch: "",
+        amount: "",
+        purpose: "",
+        occupation: "",
+        message: "",
+      });
 
-  } catch (err) {
-    console.error("Error submitting donation:", err);
-    alert("Failed to submit donation");
-  }
-};
+    } catch (err) {
+      console.error("Error submitting donation:", err);
+      alert("Failed to submit donation");
+    }
+  };
 
 
   return (

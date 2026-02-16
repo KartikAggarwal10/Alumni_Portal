@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./DualSlider.css";
+import api from "../api";
 
-const BACKEND_URL = "http://localhost:3000"; // change if needed
+
 
 const HomeSlider = () => {
   const [events, setEvents] = useState([]);
@@ -38,9 +39,9 @@ const HomeSlider = () => {
 
   // Fetch Data for Left Slider
   useEffect(() => {
-    fetch(`${BACKEND_URL}/gly-updpi`)
-      .then((res) => res.json())
-      .then((data) => {
+    api.get("/gly-updpi")
+      .then((res) => {
+        const data = res.data;
         console.log("Fetched data:", data);
         if (data.events) {
           setEvents(data.events);
@@ -93,7 +94,7 @@ const HomeSlider = () => {
           <>
             <img
               key={`meetup-${leftIndex}`}
-              src={`${BACKEND_URL}/people/${meetups[leftIndex].imageUrl}`}
+              src={`/people/${meetups[leftIndex].imageUrl}`}
               alt={meetups[leftIndex].caption}
               onError={(e) => {
                 console.error("Image load error:", e.target.src);
@@ -140,10 +141,10 @@ const HomeSlider = () => {
                 }
               }}
             />
-            
+
             {/* Overlay for better text visibility */}
             <div className="text-overlay"></div>
-            
+
             {/* Changing text content */}
             <div className="text-content" key={`right-text-${rightIndex}`}>
               <h3>{rightSliderData[rightIndex].title}</h3>
@@ -163,7 +164,7 @@ const HomeSlider = () => {
             )}
           </>
         ) : (
-          <div className="no-data">No data available</div>  
+          <div className="no-data">No data available</div>
         )}
       </div>
 
