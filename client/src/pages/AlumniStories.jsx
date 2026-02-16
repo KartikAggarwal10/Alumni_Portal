@@ -38,9 +38,10 @@ const AlumniStories = () => {
     <div className={styles.alumniContainer}>
       <div className={styles.alumniHeader}>
         <h2>Alumni Stories and Updates</h2>
-        <a href="/AlumniStoriesinsidecontiner">
-          <button className={styles.viewAllBtn}>View All</button>
-        </a>
+        <Link to="/AlumniStoriesinsidecontiner">
+  <button className={styles.viewAllBtn}>View All</button>
+</Link>
+
       </div>
 
       <div className={styles.alumniGrid}>
