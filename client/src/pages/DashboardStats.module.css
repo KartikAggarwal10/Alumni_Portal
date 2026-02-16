@@ -1,0 +1,256 @@
+.dashboardSection {
+  background: linear-gradient(135deg, #f2f7f6, #d9e4dd);
+  padding: 50px 20px;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: relative;
+}
+
+.dashboardSection:global(.visible) {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dashboardSection:global(.visible)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  opacity: 0;
+  z-index: -1;
+  animation: flash 0.3s ease-out;
+}
+
+.dashboardSection h2 {
+  font-size: 2.2em;
+  color: #2a4d69;
+  margin-bottom: 30px;
+  position: relative;
+  transition: text-shadow 0.3s ease;
+}
+
+.dashboardSection:global(.visible) h2 {
+  text-shadow: 0 0 10px rgba(42, 77, 105, 0.5);
+}
+
+.dashboardSection h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #3a8cea;
+  margin: 10px auto;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.dashboardSection:global(.visible) h2::after {
+  transform: scaleX(1);
+}
+
+.dashboardStats {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.statItem {
+  text-align: center;
+  width: 160px;
+  height: 200px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  animation: float 2s infinite ease-in-out;
+  animation-delay: calc(var(--index) * 0.2s);
+}
+
+.statItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(255, 127, 80, 0.2), transparent);
+  transform: translateY(100%);
+  transition: transform 0.5s ease;
+}
+
+.statItem::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #3a8cea;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.statItem:hover::before {
+  transform: translateY(-100%);
+}
+
+.statItem:hover::after {
+  opacity: 1;
+}
+
+.statItem:hover {
+  box-shadow: 0 0 20px #3a8cea, 0 5px 15px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  background-color: #dfdbdb;
+}
+
+.statItem img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.statItem:hover img {
+  animation: vibrate 0.3s infinite;
+}
+
+.statItem h3 {
+  font-size: 2em;
+  color: #17569e;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  animation: float 2s infinite ease-in-out;
+  animation-delay: calc(var(--index) * 0.2s + 0.1s);
+}
+
+.statItem p {
+  color: #555;
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  animation: float 2s infinite ease-in-out;
+  animation-delay: calc(var(--index) * 0.2s + 0.2s);
+}
+
+.btn {
+  background: #3772c5;
+  color: #fff;
+  padding: 5px 10px;
+  text-decoration: none;
+  border-radius: 20px;
+  margin-top: 10px;
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover {
+  background: #17488c;
+  transform: scale(1.1);
+}
+
+.btn:active::after,
+.btn:active::before,
+.btn:active span::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #17569e;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: spark 0.5s ease-out;
+}
+
+.btn:active::before {
+  animation-delay: 0.1s;
+}
+
+.btn:active span::after {
+  animation-delay: 0.2s;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes vibrate {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes flash {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes spark {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .statItem {
+    width: 90%;
+    animation: none;
+  }
+
+  .statItem:hover {
+    transform: translateY(0);
+    background-color: #dfdbdb;
+  }
+
+  .statItem::after {
+    display: none;
+  }
+
+  .statItem img {
+    animation: none;
+  }
+
+  .statItem h3,
+  .statItem p {
+    animation: none;
+  }
+}

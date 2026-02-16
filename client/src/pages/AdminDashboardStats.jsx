@@ -1,25 +1,42 @@
 import React, { useState } from "react";
 import "./AdminDashboardStats.css";
-
 const AdminDashboardStats = () => {
   const [stats, setStats] = useState({
-    members: "",
-    companies: "",
-    achievements: "",
-    countries: "",
-  });
+  member: "",
+  comp: "",
+  ach: "",
+  countries: "",
+});
 
   const handleChange = (e) => {
-    setStats({ ...stats, [e.target.name]: e.target.value });
-  };
+  const { name, value } = e.target;
+  setStats(prev => ({
+    ...prev,
+    [name]: value
+  }));
+};
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Updated Stats:", stats);
 
-    // Later: send to backend API
-    // fetch("/update-stats", { method: "POST", body: JSON.stringify(stats) })
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch("http://localhost:3000/dmin-upd", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(stats),
+    });
+
+    const data = await res.json();
+    alert(data.message);
+
+  } catch (error) {
+    console.error("Error updating stats:", error);
+    alert("Failed to update stats");
+  }
+};
 
   return (
     <div className="add-achievement-container">
@@ -33,48 +50,50 @@ const AdminDashboardStats = () => {
           <div className="form-row">
             <div className="form-group">
               <label>Total Members</label>
-              <input
-                type="number"
-                name="members"
-                value={stats.members}
-                onChange={handleChange}
-                required
-              />
+             <input
+  type="number"
+  name="member"
+  value={stats.member}
+  onChange={handleChange}
+  required
+/>
             </div>
 
             <div className="form-group">
               <label>Total Companies</label>
-              <input
-                type="number"
-                name="companies"
-                value={stats.companies}
-                onChange={handleChange}
-                required
-              />
+            <input
+  type="number"
+  name="comp"
+  value={stats.comp}
+  onChange={handleChange}
+  required
+/>
             </div>
           </div>
 
           <div className="form-row">
             <div className="form-group">
               <label>Total Achievements</label>
-              <input
-                type="number"
-                name="achievements"
-                value={stats.achievements}
-                onChange={handleChange}
-                required
-              />
+             
+<input
+  type="number"
+  name="ach"
+  value={stats.ach}
+  onChange={handleChange}
+  required
+/>
+
             </div>
 
             <div className="form-group">
               <label>Total Countries</label>
-              <input
-                type="number"
-                name="countries"
-                value={stats.countries}
-                onChange={handleChange}
-                required
-              />
+           <input
+  type="number"
+  name="countries"
+  value={stats.countries}
+  onChange={handleChange}
+  required
+/>
             </div>
           </div>
 

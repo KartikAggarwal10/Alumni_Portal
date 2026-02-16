@@ -1,13 +1,13 @@
-/* Signup Page Specific Styles - Extracted from signup.html */
-
+/* Reset inside signup only */
 .signup-page-container * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Main Container */
 .signup-page-container {
-    font-family: 'Roboto', sans-fonts;
+    font-family: 'Roboto', sans-serif;
     background: linear-gradient(135deg, #f0f4f8, #d9e8f5);
     color: #333;
     line-height: 1.6;
@@ -16,6 +16,7 @@
     min-height: 100vh;
 }
 
+/* Links */
 .signup-page-container a {
     text-decoration: none;
     color: #C25416;
@@ -23,30 +24,31 @@
 }
 
 .signup-page-container a:hover {
-    color: #b05521;
+    color: #b05f30;
 }
 
-/* Header Section */
+/* Header */
 .signup-page-container .header {
     text-align: center;
-    padding: 20px 20px;
-    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 20px;
+    margin-top: 10px;
     background: white;
-    color: black;
+    color: #2a4d69;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .signup-page-container .header h1 {
-    font-size: 3em;
-    margin-bottom: 10px;
-    color:#2a4d69;
+    font-size: 2em;
+    /* padding: 0px 51px; */
 }
 
 .signup-page-container .header p {
     font-size: 1.2em;
 }
 
-/* Signup Section */
+/* Main Section */
 .signup-page-container .main-content {
     flex: 1;
     display: flex;
@@ -55,7 +57,8 @@
     padding: 40px 20px;
 }
 
-.signup-page-container signup-container {
+/* Card Container */
+.signup-page-container .signup-container {
     max-width: 900px;
     width: 100%;
     background: #fff;
@@ -66,11 +69,13 @@
     flex-direction: row;
 }
 
+/* Left Image */
 .signup-page-container .signup-image {
     flex: 1;
-    background: url('https://cdn.pixabay.com/photo/2024/02/19/02/02/login-8582362_1280.png') no-repeat center center/cover;
+    background: url('https://images.pexels.com/photos/4200831/pexels-photo-4200831.jpeg') no-repeat center center/cover;
 }
 
+/* Right Form */
 .signup-page-container .signup-form {
     flex: 1;
     padding: 30px;
@@ -83,6 +88,7 @@
     text-align: center;
 }
 
+/* Grid Layout */
 .signup-page-container .signup-form form {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -90,12 +96,14 @@
     align-items: center;
 }
 
+/* Labels */
 .signup-page-container .signup-form label {
     font-weight: bold;
     color: #555;
     text-align: right;
 }
 
+/* Inputs */
 .signup-page-container .signup-form input {
     padding: 10px;
     border: 1px solid #ddd;
@@ -110,24 +118,45 @@
     outline: none;
 }
 
-.signup-page-container .signup-form button {
+/* OTP Button */
+.signup-page-container .signup-form button[type="button"] {
     grid-column: span 2;
     padding: 8px 12px;
-    background: #C25416;
+    background: #3772c5;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 0.95em;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    width: 60%;
+    justify-self: center;
+}
+
+.signup-page-container .signup-form button[type="button"]:hover {
+    background:#305c99;
+}
+
+/* Submit Button */
+.signup-page-container .signup-form button[type="submit"] {
+    grid-column: span 2;
+    padding: 8px 12px;
+    background: #3772c5;
     color: #fff;
     border: none;
     border-radius: 10px;
     font-size: 1em;
     cursor: pointer;
     transition: background 0.3s ease;
-    width: 60;
-    align-self: center;
+    width: 60%;
+    justify-self: center;
 }
 
-.signup-page-container .signup-form button:hover {
-    background: #a05224;
+.signup-page-container .signup-form button[type="submit"]:hover {
+    background: #305c99;
 }
 
+/* Bottom Text */
 .signup-page-container .signup-form p {
     grid-column: span 2;
     text-align: center;
@@ -136,8 +165,9 @@
     color: #555;
 }
 
-/* Responsive Design */
+/* Responsive */
 @media (max-width: 768px) {
+
     .signup-page-container .signup-container {
         flex-direction: column;
     }
@@ -154,7 +184,8 @@
         text-align: left;
     }
 
-    .signup-page-container .signup-form button {
-        width: 60%;
+    .signup-page-container .signup-form button[type="submit"],
+    .signup-page-container .signup-form button[type="button"] {
+        width: 70%;
     }
 }

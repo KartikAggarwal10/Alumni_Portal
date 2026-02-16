@@ -19,8 +19,9 @@ import { dmevt } from "./admin-events.js";
 import { vntmem } from "./event-mem.js";
 import { don } from "./dontion.js";
 import { dmgly } from "./admin-gallery.js";
+import dotenv from "dotenv";
+dotenv.config();
 let x;
-
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, 'people')
@@ -30,7 +31,6 @@ const storage = multer.diskStorage({
     cb(null, x)
   }
 })
-
 const upload = multer({ storage: storage })
 const app = express()
 const __filename = fileURLToPath(import.meta.url);
@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
 })
 
 app.use(cors({
-  origin: true,        // 🔥 auto frontend origin allow karega
+  origin: true,       
   credentials: true
 }));
 app.options("*", cors());
@@ -54,7 +54,7 @@ app.use((req, res, next) => {
 });
 
 app.use(session({
-  secret: 'your-secret-key', // change this to a strong secret
+  secret: process.env.SESSION_SECRET, // change this to a strong secret
   resave: false,
   saveUninitialized: false,
   cookie: { secure: false } // set to true if using HTTPS
@@ -65,16 +65,15 @@ app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 app.use(express.static(path.join(__dirname, 'alumni-email-system', 'public')));
 app.use(express.static('public'));
 app.use('/people', express.static(path.join(__dirname, 'people')));
-
-app.use('/people', express.static(path.join(__dirname, 'people')));
-mongoose.connect("mongodb://localhost:27017/alumni")
+//mongoose.connect("mongodb://localhost:27017/alumni")
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch(err => console.log("DB Connection Error:", err));
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'kartikaggarwal102006@gmail.com',
-    pass: 'zbtf nomk nrbv hnps'
+    user: process.env.USER,
+    pass: process.env.PASS
   }
 });
 function isAuthenticated(req, res, next) {
@@ -351,7 +350,6 @@ app.post("/send-feedback", async (req, res) => {
 app.get('/gly-upd', (req, res) => {
   res.sendFile(path.join(__dirname, "admin-gallery.html"));
 })
-
 app.post("/gly-upd", upload.single('imageUrl'), (req, res) => {
   const imageBuffer = fs.readFileSync(req.file.path);
   const { imageUrl,
@@ -364,7 +362,6 @@ app.post("/gly-upd", upload.single('imageUrl'), (req, res) => {
   });
   student.save()
   return res.send("u are being registered");
-
 })
 app.get("/gly-updpi", async (req, res) => {
   const documents = await dmgly.find({});
@@ -374,7 +371,6 @@ app.get('/dmvnt', isAuthenticated,
   (req, res) => {
     res.sendFile(path.join(__dirname, "admin-events.html"));
   })
-
 app.post("/dmvnt", (req, res) => {
   const { eventTopic,
     eventDate,
@@ -387,7 +383,6 @@ app.post("/dmvnt", (req, res) => {
   student.save();
   return res.redirect("/dmvnt");
 })
-
 app.get('/eventreg', (req, res) => {
   res.sendFile(path.join(__dirname, "admin-add-member.html"));
 })
@@ -435,15 +430,49 @@ app.get('/alumni', (req, res) => {
 app.get('/contct', (req, res) => {
   res.sendFile(path.join(__dirname, "contact.html"));
 })
-app.post("/add-ach", upload.single('photo'), (req, res) => {
+app.post("/add-ach", upload.single("photo"), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "Photo is required" });
+    }
 
-  const imageBuffer = fs.readFileSync(req.file.path);
-  const { name, email, phone, education, achievementTitle, achievement, currentRole, projects, story, photo, date } = req.body;
-  const student = new chv({ name, email, phone, education, achievementTitle, achievement, currentRole, projects, story, photo: x, date });
-  student.save()
-  return res.send("u are being registered");
+    const {
+      name,
+      email,
+      phone,
+      education,
+      achievementTitle,
+      achievement,
+      currentRole,
+      projects,
+      story,
+      date,
+    } = req.body;
 
-})
+    const student = new chv({
+      name,
+      email,
+      phone,
+      education,
+      achievementTitle,
+      achievement,
+      currentRole,
+      projects,
+      story,
+      photo: req.file.filename, // ✅ correct way
+      date,
+    });
+
+    await student.save();
+
+    res.status(200).json({ message: "Achievement added successfully" });
+
+  } catch (error) {
+    console.error("Error saving achievement:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
 app.post("/send-otp", async (req, res) => {
   const { email } = req.body;
 
@@ -692,13 +721,11 @@ app.post("/set-redirect", (req, res) => {
 app.post("/login", async (req, res) => {
   const { email, pswrd } = req.body;
   try {
-    const student = await stds.findOne({ email, pswrd });
+    const student = await stds.findOne({ email,id: pswrd });
     if (student) {
       req.session.loggedIn = true;
-      req.session.userId = student._id; // Store user ID in session
+      req.session.userId = student._id;
       req.session.user = student;
-
-      // Redirect to original URL if available - send as JSON for frontend to handle
       const redirectTo = req.session.redirectTo || "/";
       delete req.session.redirectTo;
       return res.json({ success: true, message: "Login successful", redirectTo, user: student });
@@ -729,6 +756,7 @@ app.post('/send-emails', (req, res) => {
     subject: subject,
     text: message
   };
+
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.error('Error sending email:', error);
@@ -738,11 +766,11 @@ app.post('/send-emails', (req, res) => {
     res.json({ success: 'Emails sent successfully' });
   });
 });
+
 // Make sure this comes AFTER all other API routes
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'alumni-email-system', 'public', 'index.html'));
 });
-
 const port=process.env.PORT
 app.listen(port, '0.0.0.0', () => {
   console.log(`Server running at http://localhost:${port} or http://127.0.0.1:${port}`);

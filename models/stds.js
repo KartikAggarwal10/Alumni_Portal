@@ -7,9 +7,9 @@ const stdsSchema = new mongoose.Schema({
     comp:String,
     position:String,
     email:String,
+     pswrd:String,
     photo:String,
     summary:String,
-    
     id:String
 
 });

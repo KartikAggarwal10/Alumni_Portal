@@ -9,7 +9,7 @@ export default function Navbar() {
     <>
       {/* ===== TOP HEADER ===== */}
       <header className="top-header">
-        <img src="/Header.png" alt="Institute Header" />
+        <img src="/Header2.png" alt="Institute Header" />
       </header>
 
       {/* ===== NAVBAR ===== */}

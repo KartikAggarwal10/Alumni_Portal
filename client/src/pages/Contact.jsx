@@ -52,7 +52,7 @@ const Contact = () => {
                     </div>
 
                     <div className="contact-form">
-                        <h2>Feedback Counter</h2>
+                        <h2>Suggestions</h2>
                         <form onSubmit={handleSubmit}>
                             <input
                                 type="text"

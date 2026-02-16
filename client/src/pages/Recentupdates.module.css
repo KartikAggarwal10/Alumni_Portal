@@ -1,0 +1,215 @@
+.updatesSection {
+  background: linear-gradient(135deg, #ffffff, #e6e6e6);
+  padding: 50px 20px;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: relative;
+}
+
+/* .visible is added dynamically by IntersectionObserver in HomeDumy.jsx */
+.updatesSection:global(.visible) {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.updatesSection:global(.visible)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  opacity: 0;
+  z-index: -1;
+  animation: flash 0.3s ease-out;
+}
+
+.updatesSection h2 {
+  font-size: 2.2em;
+  color: #2a4d69;
+  margin-bottom: 30px;
+  position: relative;
+  transition: text-shadow 0.3s ease;
+}
+
+.updatesSection:global(.visible) h2 {
+  text-shadow: 0 0 10px rgba(42, 77, 105, 0.5);
+}
+
+.updatesSection h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #3a8cea;
+  margin: 10px auto;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.updatesSection:global(.visible) h2::after {
+  transform: scaleX(1);
+}
+
+/* Updates Container */
+.updates {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/*
+  .update-card and .icon are injected via innerHTML/createElement in useEffect —
+  CSS Modules cannot scope them, so :global() is used to keep them as plain class names
+  that the DOM manipulation can still find and style correctly.
+*/
+:global(.update-card) {
+  background: #fff;
+  padding: 40px;
+  border-radius: 15px;
+  width: 300px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  animation: float 2s infinite ease-in-out;
+  animation-delay: calc(var(--index) * 0.2s);
+}
+
+:global(.update-card)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(255, 127, 80, 0.2), transparent);
+  transform: translateY(100%);
+  transition: transform 0.5s ease;
+}
+
+:global(.update-card)::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #0f498b;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+:global(.update-card):hover::before {
+  transform: translateY(-100%);
+}
+
+:global(.update-card):hover::after {
+  opacity: 1;
+}
+
+:global(.update-card):hover {
+  box-shadow: 0 0 20px #17569e, 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  background-color: #dfdbdb;
+}
+
+:global(.update-card) :global(.icon) {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+:global(.update-card):hover :global(.icon) {
+  animation: vibrate 0.3s infinite;
+}
+
+:global(.update-card) h3 {
+  font-size: 1.5em;
+  color: #17569e;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+  animation: float 2s infinite ease-in-out;
+  animation-delay: calc(var(--index) * 0.2s + 0.1s);
+}
+
+:global(.update-card) p {
+  color: #4b5563;
+  font-size: 1em;
+  line-height: 1.5;
+  position: relative;
+  z-index: 2;
+  animation: float 2s infinite ease-in-out;
+  animation-delay: calc(var(--index) * 0.2s + 0.2s);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes vibrate {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes flash {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  :global(.update-card) {
+    width: 90%;
+    animation: none;
+  }
+
+  :global(.update-card):hover {
+    transform: translateY(0);
+    background-color: #dfdbdb;
+  }
+
+  :global(.update-card)::after {
+    display: none;
+  }
+
+  :global(.update-card) :global(.icon) {
+    animation: none;
+  }
+
+  :global(.update-card) h3,
+  :global(.update-card) p {
+    animation: none;
+  }
+}

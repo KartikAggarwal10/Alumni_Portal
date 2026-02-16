@@ -40,6 +40,19 @@ const Giving = () => {
         }
     };
 
+    // Organize batches into 3 columns
+    const organizeIntoColumns = (data, numColumns = 3) => {
+        const batches = Object.keys(data);
+        const columns = Array.from({ length: numColumns }, () => []);
+        
+        batches.forEach((batch, index) => {
+            const columnIndex = index % numColumns;
+            columns[columnIndex].push(batch);
+        });
+        
+        return columns;
+    };
+
     const toggleBatch = (batch) => {
         setExpandedBatches(prev => ({ ...prev, [batch]: !prev[batch] }));
     };
@@ -75,8 +88,6 @@ const Giving = () => {
                     <p>Building a Legacy, One Step at a Time</p>
                 </div>
             </div>
-
-            {/* Recent Donations */}
             <div className="recent-donations">
                 <div id="recentList" className="recentList">
                     {recentDonations.length === 0 ? (
@@ -99,29 +110,37 @@ const Giving = () => {
             {/* Batchwise Contributions */}
             <div className="batch-list" style={{ textAlign: 'center' }}>
                 <h2 style={{ textAlign: 'center' }}>Batchwise Contributions</h2>
-                <div id="batchList">
-                    {Object.keys(batchDonations).map(batch => (
-                        <div key={batch} className="batch-section">
-                            <div className="batch-header" onClick={() => toggleBatch(batch)}>
-                                Batch {batch}
-                            </div>
-                            {expandedBatches[batch] && (
-                                <div className="batch-donations">
-                                    {batchDonations[batch].map((donation, index) => (
-                                        <div key={index} className="donation-item">
-                                            <div className="donation-details">
-                                                <p><strong>Name:</strong> {donation.name}</p>
-                                                <p><strong>Amount:</strong> ₹{donation.amount}</p>
-                                                <p><strong>Purpose:</strong> {donation.purpose}</p>
-                                                <p><strong>Email:</strong> {donation.email}</p>
-                                            </div>
+                {Object.keys(batchDonations).length === 0 ? (
+                    <p>No batch donations yet.</p>
+                ) : (
+                    <div id="batchList">
+                        {organizeIntoColumns(batchDonations).map((column, colIndex) => (
+                            <div key={colIndex} className="column">
+                                {column.map(batch => (
+                                    <div key={batch} className="batch-section">
+                                        <div className="batch-header" onClick={() => toggleBatch(batch)}>
+                                            Batch {batch}
                                         </div>
-                                    ))}
-                                </div>
-                            )}
-                        </div>
-                    ))}
-                </div>
+                                        {expandedBatches[batch] && (
+                                            <div className="batch-donations">
+                                                {batchDonations[batch].map((donation, index) => (
+                                                    <div key={index} className="donation-item">
+                                                        <div className="donation-details">
+                                                            <p><strong>Name:</strong> {donation.name}</p>
+                                                            <p><strong>Amount:</strong> ₹{donation.amount}</p>
+                                                            <p><strong>Purpose:</strong> {donation.purpose}</p>
+                                                            <p><strong>Email:</strong> {donation.email}</p>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                )}
             </div>
 
             {/* Donate Button */}

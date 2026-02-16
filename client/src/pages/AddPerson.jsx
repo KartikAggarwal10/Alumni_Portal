@@ -22,5 +22,4 @@ const AddPerson = () => {
         </div>
     );
 };
-
 export default AddPerson;

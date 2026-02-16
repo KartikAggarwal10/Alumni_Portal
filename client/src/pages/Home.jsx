@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Home.css";
-
+import HomeSlider from "./slider";
 export default function Home() {
     const navigate = useNavigate();
 
@@ -201,7 +201,6 @@ export default function Home() {
                 <p>Connect with your IIIT Sonepat Alumni Family</p>
                 <a href="/register" className="btn"><span>Join the Community</span></a>
             </section>
-
             {/* Dashboard */}
             <section className="dashboard-section section">
                 <h2>IIIT Sonepat Network</h2>

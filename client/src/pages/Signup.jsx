@@ -59,7 +59,7 @@ const Signup = () => {
         <div className="signup-page-container">
             <div className="header">
                 <h1>Sign Up</h1>
-                <p>Join the IIIT Sonepat Alumni community</p>
+                <p>Create Account to join the IIIT Sonepat Alumni community</p>
             </div>
             <div className="main-content">
                 <div className="signup-container">
@@ -91,7 +91,6 @@ const Signup = () => {
                     </div>
                 </div>
             </div>
-            this is originl one
         </div>
     );
 };

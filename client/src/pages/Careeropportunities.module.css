@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+.careerOpportunities {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.header h2 {
+  font-size: 2.2em;
+  color: #2a4d69;
+  position: relative;
+  transition: text-shadow 0.3s ease;
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(42, 77, 105, 0.5);
+}
+
+.header h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #3a8cea;
+  margin: 10px auto;
+  border-radius: 2px;
+  transform: scaleX(1);
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+
+.viewAllBtn {
+  padding: 10px 24px;
+  background: white;
+  border: 2px solid #3772c5;
+  color: #3772c5;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: absolute;
+  right: 20px;
+  text-decoration: none;
+  z-index: 2;
+}
+
+.viewAllBtn:hover {
+  background: #3772c5;
+  color: white;
+  transform: scale(1.05);
+}
+
+.viewAllBtn:active::after,
+.viewAllBtn:active::before {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #17569e;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: spark 0.5s ease-out;
+}
+
+.viewAllBtn:active::before {
+  animation-delay: 0.1s;
+}
+
+/* Jobs Grid */
+.jobsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* Job Card */
+.jobCard {
+  background: white;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  animation: float 2s infinite ease-in-out;
+  animation-delay: calc(var(--index) * 0.2s);
+}
+
+.jobCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(255, 127, 80, 0.2), transparent);
+  transform: translateY(100%);
+  transition: transform 0.5s ease;
+}
+
+.jobCard::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #3a8cea;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.jobCard:hover::before {
+  transform: translateY(-100%);
+}
+
+.jobCard:hover::after {
+  opacity: 1;
+}
+
+.jobCard:hover {
+  box-shadow: 0 0 20px #3a8cea, 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  background-color: #dfdbdb;
+}
+
+/* Job Header */
+.jobHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
+  animation: float 2s infinite ease-in-out;
+  animation-delay: calc(var(--index) * 0.2s + 0.1s);
+}
+
+.jobTitle {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.jobType {
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #666;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-weight: 500;
+  transition: transform 0.3s ease;
+}
+
+.jobCard:hover .jobType {
+  animation: vibrate 0.3s infinite;
+}
+
+/* Job Info */
+.jobInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 400;
+  position: relative;
+  z-index: 2;
+  animation: float 2s infinite ease-in-out;
+  animation-delay: calc(var(--index) * 0.2s + 0.2s);
+}
+
+.icon {
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.jobCard:hover .icon {
+  animation: vibrate 0.3s infinite;
+}
+
+/* View Details Button */
+.viewDetailsBtn {
+  width: 100%;
+  padding: 8px 16px;
+  background-color: #3772c5;
+  border: 2px solid #3772c5;
+  color: white;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.viewDetailsBtn:hover {
+  background: #17488c;
+  border-color: #17488c;
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(55, 114, 197, 0.3);
+}
+
+.viewDetailsBtn:active::after,
+.viewDetailsBtn:active::before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #17569e;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: spark 0.5s ease-out;
+}
+
+.viewDetailsBtn:active::before {
+  animation-delay: 0.1s;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes vibrate {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes spark {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(3);
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .jobsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .header h2 {
+    text-align: center;
+    width: 100%;
+  }
+
+  .header h2::after {
+    margin: 10px auto;
+  }
+
+  .viewAllBtn {
+    width: auto;
+    position: static;
+  }
+
+  .jobsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .jobCard {
+    animation: none;
+  }
+
+  .jobCard:hover {
+    transform: translateY(0);
+  }
+
+  .jobCard:hover .icon,
+  .jobCard:hover .jobType {
+    animation: none;
+  }
+
+  .jobHeader,
+  .jobInfo {
+    animation: none;
+  }
+}

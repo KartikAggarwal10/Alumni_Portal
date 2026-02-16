@@ -132,7 +132,7 @@
   grid-column: 1 / -1;
   margin-top: 20px;
   padding: 15px 40px;
-  background: #e26b6b;
+  background: #2b60d3;
   color: #ffffff;
   font-size: 1.05rem;
   font-weight: 600;
@@ -145,7 +145,7 @@
 }
 
 .eventreg-page-container button[type="submit"]:hover {
-  background:  #ef4444;
+  background:  #2663e7;
   box-shadow: 0 4px 12px rgba(59, 130, 246, 0.35);
   transform: translateY(-1px);
 }

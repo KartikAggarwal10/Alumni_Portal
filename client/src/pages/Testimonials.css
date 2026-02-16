@@ -1,0 +1,217 @@
+/* Testimonials Section */
+.testimonial-section {
+  background: linear-gradient(135deg, #e1e4ec, #e7e9f0);
+  padding: 50px 20px;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: relative;
+}
+
+.testimonial-section.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.testimonial-section.visible::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  opacity: 0;
+  z-index: -1;
+  animation: flash 0.3s ease-out;
+}
+
+.testimonial-section h2 {
+  font-size: 2.2em;
+  color: #2a4d69;
+  margin-bottom: 30px;
+  position: relative;
+  transition: text-shadow 0.3s ease;
+}
+
+.testimonial-section.visible h2 {
+  text-shadow: 0 0 10px rgba(42, 77, 105, 0.5);
+}
+
+.testimonial-section h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #3a8cea;
+  margin: 10px auto;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.testimonial-section.visible h2::after {
+  transform: scaleX(1);
+}
+
+/* Testimonial Carousel */
+.testimonial-carousel {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+/* Individual Testimonial Card */
+.testimonial-item {
+  background: #fff;
+  padding: 25px;
+  border-radius: 15px;
+  width: 300px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  position: relative;
+  text-align: center;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  animation: float 2s infinite ease-in-out;
+  animation-delay: calc(var(--index) * 0.2s);
+}
+
+.testimonial-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(transparent, rgba(255, 127, 80, 0.2), transparent);
+  transform: translateY(100%);
+  transition: transform 0.5s ease;
+}
+
+.testimonial-item::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: #17569e;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.testimonial-item:hover::before {
+  transform: translateY(-100%);
+}
+
+.testimonial-item:hover::after {
+  opacity: 1;
+}
+
+.testimonial-item:hover {
+  box-shadow: 0 0 20px #0f3d70, 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  background-color: #dfdbdb;
+}
+
+.testimonial-item .quote-icon {
+  width: 30px;
+  height: 30px;
+  margin-bottom: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 2;
+  opacity: 0.8;
+  transition: transform 0.3s ease;
+}
+
+.testimonial-item:hover .quote-icon {
+  animation: vibrate 0.3s infinite;
+}
+
+.testimonial-item p {
+  font-size: 1em;
+  color: #4b5563;
+  margin-bottom: 15px;
+  font-style: italic;
+  position: relative;
+  z-index: 2;
+  animation: float 2s infinite ease-in-out;
+  animation-delay: calc(var(--index) * 0.2s + 0.2s);
+}
+
+.testimonial-item h4 {
+  font-size: 1.2em;
+  color: #17569e;
+  font-weight: 600;
+  position: relative;
+  z-index: 2;
+  animation: float 2s infinite ease-in-out;
+  animation-delay: calc(var(--index) * 0.2s + 0.1s);
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes vibrate {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-3px);
+  }
+  75% {
+    transform: translateX(3px);
+  }
+}
+
+@keyframes flash {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .testimonial-carousel {
+    flex-direction: column;
+  }
+
+  .testimonial-item {
+    width: 90%;
+    animation: none;
+  }
+
+  .testimonial-item:hover {
+    transform: translateY(0);
+    background-color: #dfdbdb;
+  }
+
+  .testimonial-item::after {
+    display: none;
+  }
+
+  .testimonial-item .quote-icon {
+    animation: none;
+  }
+
+  .testimonial-item h4,
+  .testimonial-item p {
+    animation: none;
+  }
+}

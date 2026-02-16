@@ -15,24 +15,26 @@
 }
 
 .gallery-page-container .header {
+    display: flex;
+    flex-direction: column;
     color: #2a4d69;
     background-color: white;
-    padding: 20px 20px;
-    margin-top: 20px;
+    padding: 10px 20px;
+    margin-top: 10px;
     text-align: center;
     position: relative;
     animation: gallerySlideIn 1s ease-in-out;
 }
 
 .gallery-page-container .header h1 {
-    font-size: 3.2em;
-    margin: 0 0 15px;
+    font-size: 2em;
+    margin: 0 0 10px;
     text-transform: uppercase;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .gallery-page-container .header p {
-    font-size: 1.4em;
+    font-size: 1em;
     margin: 0;
     font-style: italic;
     opacity: 0.9;
@@ -52,7 +54,7 @@
 
 .gallery-page-container .gallery-container {
     max-width: 1200px;
-    margin: 40px auto;
+    margin: 20px auto;
     padding: 20px;
     text-align: center;
 }

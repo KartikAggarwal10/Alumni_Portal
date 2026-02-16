@@ -26,19 +26,34 @@ import AdminEvents from './pages/AdminEvents';
 import AdminGiving from './pages/AdminGiving';
 import AdminGallery from './pages/AdminGallery';
 import AdminDashboardStats from './pages/AdminDashboardStats';
+import DualSlider from './pages/slider';
+import HomeDumy from './pages/dumyhome';
+import AlumniStoriesinsidecontiner from './pages/AlumniStoriesinsidecontiner';
+import PostDetailPage from './pages/PostDetailPageinsideone';
+import OpportunitiesPage from './pages/Opportunitiespageinside';
+import AlumniCouncil from './pages/Alumnicouncilinsidecontiner';
+import ProfilePage from './pages/Profilepageinsidecontiner';
 function App() {
     return (
         <Router>
             <div className="app-container">
                 <Navbar/>
                 <Routes>
+                    <Route path='/ProfilePage' element={<ProfilePage/>} />
+                    <Route path='/AlumniCouncil' element={<AlumniCouncil/>} /> 
+                    <Route path='/OpportunitiesPage' element={<OpportunitiesPage/>} />
+                    <Route path='/PostDetailPage/:id' element={< PostDetailPage />} />
+                    <Route path='/AlumniStoriesinsidecontiner' element={<AlumniStoriesinsidecontiner/>} />
+                    <Route path='/' element={< HomeDumy />} />
+                    <Route path='/DualSlider' element={< DualSlider />} />
+                    <Route path='/AdminAddAlumni' element={< AdminAddAlumni />} />
                     <Route path='/AdminDashboardStats' element={<AdminDashboardStats/>} />
                     <Route path='/AdminGallery' element={<AdminGallery/>} />
                     <Route path='/AdminGiving' element={  < AdminGiving />} />
                     <Route path='/AdminEvents' element={< AdminEvents />} />
                     <Route path='/register' element={<AlumniRegister/>} />
-                    <Route  path='/dumy' element={< AddAchievement />} />
-                    <Route path="/" element={<Home />} />
+                    <Route path='/AddAchievement' element={< AddAchievement />} />
+                    <Route path="/Homedumy" element={<Home />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/signupt" element={<Signup />} />
                     <Route path="/alumni" element={<Alumni />} />

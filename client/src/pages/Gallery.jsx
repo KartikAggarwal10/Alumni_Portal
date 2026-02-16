@@ -105,7 +105,7 @@ const Gallery = () => {
                                             onClick={() => openLightbox(item.imageUrl, item.caption)}
                                         >
                                             <img src={item.imageUrl} alt={item.caption} />
-                                            <div className="caption">{item.caption}</div>
+                                            {/* <div className="caption">{item.caption}</div> */}
                                         </div>
                                     ))}
                                 </div>

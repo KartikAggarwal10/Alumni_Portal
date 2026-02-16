@@ -149,20 +149,8 @@ export default function AlumniRegister() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="footer">
-        <div>
-          <h2>Mentored by:</h2>
-          Dr. Gourav Jain
-        </div>
-        <div>© 2025 IIIT Sonepat Alumni Portal</div>
-        <div>
-          <h2>Created by:</h2>
-          Vineet Kumar Yadav <br />
-          Kartik Aggarwal <br />
-          Ritik Raj Soni
-        </div>
-      </footer>
+      
+      
     </>
   );
 }

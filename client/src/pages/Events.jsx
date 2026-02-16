@@ -34,12 +34,10 @@ const Events = () => {
             console.error("Failed to fetch events:", error);
         }
     };
-
     const handleEventClick = (evt, isUpcoming) => {
         setSelectedEvent({ ...evt, isUpcoming });
         setShowEventModal(true);
     };
-
     const handleOrganizeChange = (e) => {
         setOrganizeFormData({ ...organizeFormData, [e.target.name]: e.target.value });
     };

@@ -1,0 +1,856 @@
+.alumniPageContainer {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+/* Loading Spinner */
+.loadingSpinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 20px;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #e8e8e8;
+    border-top: 4px solid #1a73e8;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loadingSpinner p {
+    font-size: 16px;
+    color: #5f6368;
+}
+
+/* Hero Section */
+.heroSection {
+    position: relative;
+    background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+    padding: 80px 40px 100px;
+    overflow: hidden;
+    min-height: 500px;
+}
+
+.heroSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+}
+
+.heroOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+}
+
+.heroContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+.heroLeft {
+    display: flex;
+    align-items: center;
+}
+
+.heroTitle {
+    font-size: 72px;
+    font-weight: 700;
+    color: white;
+    line-height: 1.1;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+.heroRight {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.heroSubtitle {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1.6;
+}
+
+.heroStats {
+    display: flex;
+    gap: 24px;
+    justify-content: flex-start;
+}
+
+.statCard {
+    background: white;
+    border-radius: 20px;
+    padding: 32px 28px;
+    text-align: center;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 130px;
+    position: relative;
+    overflow: hidden;
+}
+
+.statCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1a73e8, #4285f4);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.statCard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.statCard:hover::before {
+    transform: scaleX(1);
+}
+
+.statNumber {
+    font-size: 48px;
+    font-weight: 700;
+    color: #1a73e8;
+    margin-bottom: 10px;
+    line-height: 1;
+}
+
+.statLabel {
+    font-size: 13px;
+    font-weight: 600;
+    color: #5f6368;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* CTA Banner */
+.ctaBanner {
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.ctaContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+}
+
+.ctaText h2 {
+    font-size: 28px;
+    color: #202124;
+    margin-bottom: 8px;
+}
+
+.ctaText p {
+    font-size: 16px;
+    color: #5f6368;
+}
+
+.ctaButton {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #1a73e8;
+    color: white;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.ctaButton:hover {
+    background-color: #1557b0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+}
+
+/* Search Section */
+.searchSection {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.searchContainer {
+    position: relative;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #5f6368;
+    font-size: 18px;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 16px 20px 16px 55px;
+    border: 2px solid #e8e8e8;
+    border-radius: 50px;
+    font-size: 16px;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: #1a73e8;
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.15);
+}
+
+.searchInput::placeholder {
+    color: #999;
+}
+
+/* Alumni Directory */
+.alumniDirectory {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+}
+
+.directoryHeader {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.directoryTitle {
+    font-size: 36px;
+    font-weight: 700;
+    color: #202124;
+    margin-bottom: 12px;
+}
+
+.directorySubtitle {
+    font-size: 18px;
+    color: #5f6368;
+}
+
+/* Empty State */
+.emptyState {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.emptyState i {
+    font-size: 64px;
+    color: #e8e8e8;
+    margin-bottom: 20px;
+}
+
+.emptyState h3 {
+    font-size: 24px;
+    color: #202124;
+    margin-bottom: 8px;
+}
+
+.emptyState p {
+    font-size: 16px;
+    color: #5f6368;
+}
+
+/* Years Grid */
+.yearsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.gridColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Batch Card */
+.batchCard {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.batchCard:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.batchHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.batchHeader:hover {
+    background: linear-gradient(135deg, #1557b0 0%, #1a73e8 100%);
+}
+
+.batchHeader.expanded {
+    border-radius: 0;
+}
+
+.batchInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.batchLabel {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.batchYear {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.batchIcon {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.batchHeader.expanded .batchIcon {
+    transform: rotate(180deg);
+}
+
+/* Batch Content */
+.batchContent {
+    padding: 16px;
+    background: #f8f9fa;
+}
+
+/* Branch Section */
+.branchSection {
+    margin-bottom: 12px;
+}
+
+.branchSection:last-child {
+    margin-bottom: 0;
+}
+
+.branchHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    background: white;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.branchHeader:hover {
+    border-color: #1a73e8;
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.1);
+}
+
+.branchHeader.expanded {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-color: #1a73e8;
+}
+
+.branchInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.branchIcon {
+    color: #1a73e8;
+    font-size: 16px;
+}
+
+.branchName {
+    font-size: 15px;
+    font-weight: 600;
+    color: #202124;
+}
+
+.studentCount {
+    font-size: 13px;
+    color: #5f6368;
+    font-weight: 500;
+}
+
+/* Student List */
+.studentList {
+    background: white;
+    border: 2px solid #1a73e8;
+    border-top: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding: 8px;
+}
+
+.studentItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+}
+
+.studentItem:hover {
+    background-color: #f8f9fa;
+    transform: translateX(4px);
+}
+
+.studentAvatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.studentName {
+    flex: 1;
+    font-size: 15px;
+    color: #202124;
+    font-weight: 500;
+}
+
+.studentArrow {
+    color: #5f6368;
+    font-size: 14px;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.studentItem:hover .studentArrow {
+    opacity: 1;
+    transform: translateX(4px);
+}
+
+/* Modal */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modalContainer {
+    background: white;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modalClose {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: #5f6368;
+    transition: all 0.3s ease;
+    z-index: 10;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modalClose:hover {
+    background: #f8f9fa;
+    color: #202124;
+    transform: rotate(90deg);
+}
+
+.modalHeader {
+    text-align: center;
+    padding: 40px 30px 30px;
+    background: linear-gradient(135deg, #1a73e8 0%, #4285f4 100%);
+    color: white;
+    position: relative;
+}
+
+.modalAvatarLarge {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
+    position: relative;
+}
+
+.modalAvatarLarge img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modalAvatarPlaceholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: white;
+    color: #1a73e8;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: 700;
+    border: 4px solid white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.modalName {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.modalBatchBranch {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.modalBadge {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+}
+
+.modalBody {
+    padding: 30px;
+}
+
+.infoGrid {
+    display: grid;
+    gap: 20px;
+}
+
+.infoItem {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.infoItem:hover {
+    background: #e8f0fe;
+}
+
+.infoItemFullWidth {
+    grid-column: 1 / -1;
+}
+
+.infoIcon {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a73e8;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.infoContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.infoLabel {
+    font-size: 12px;
+    color: #5f6368;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+.infoValue {
+    font-size: 15px;
+    color: #202124;
+    font-weight: 500;
+    word-break: break-word;
+}
+
+.infoLink {
+    color: #1a73e8;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.infoLink:hover {
+    color: #1557b0;
+    text-decoration: underline;
+}
+
+.modalFooter {
+    padding: 20px 30px 30px;
+    display: flex;
+    gap: 12px;
+}
+
+.modalActionBtn {
+    flex: 1;
+    padding: 14px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.modalActionBtnPrimary {
+    background-color: #1a73e8;
+    color: white;
+}
+
+.modalActionBtnPrimary:hover {
+    background-color: #1557b0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+}
+
+.modalActionBtnSecondary {
+    background-color: #f8f9fa;
+    color: #5f6368;
+}
+
+.modalActionBtnSecondary:hover {
+    background-color: #e8e8e8;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .heroContent {
+        gap: 40px;
+    }
+
+    .heroTitle {
+        font-size: 60px;
+    }
+
+    .statCard {
+        padding: 28px 24px;
+        min-width: 120px;
+    }
+
+    .statNumber {
+        font-size: 42px;
+    }
+
+    .yearsGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .heroSection {
+        padding: 60px 20px 80px;
+        min-height: auto;
+    }
+
+    .heroContent {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .heroLeft {
+        justify-content: center;
+    }
+
+    .heroTitle {
+        font-size: 48px;
+    }
+
+    .heroSubtitle {
+        font-size: 18px;
+    }
+
+    .heroStats {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .statCard {
+        padding: 24px 20px;
+        min-width: 100px;
+    }
+
+    .statNumber {
+        font-size: 36px;
+    }
+
+    .statLabel {
+        font-size: 12px;
+    }
+
+    .yearsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .ctaContent {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .ctaText h2 {
+        font-size: 24px;
+    }
+
+    .directoryTitle {
+        font-size: 28px;
+    }
+
+    .modalContainer {
+        max-width: 100%;
+        margin: 0;
+        border-radius: 16px 16px 0 0;
+    }
+
+    .modalFooter {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .heroSection {
+        padding: 40px 16px 60px;
+    }
+
+    .heroTitle {
+        font-size: 36px;
+    }
+
+    .heroStats {
+        flex-direction: column;
+        gap: 16px;
+        width: 100%;
+    }
+
+    .statCard {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .statNumber {
+        font-size: 32px;
+    }
+
+    .batchYear {
+        font-size: 20px;
+    }
+
+    .modalName {
+        font-size: 24px;
+    }
+}

@@ -1,0 +1,93 @@
+/* Global Styles for Home Page Container */
+.homePageContainer * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.homePageContainer {
+  font-family: "Poppins", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #f0f4f8, #d9e8f5);
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* General Section Styles */
+.homePageContainer section {
+  padding: 50px 20px;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: relative;
+}
+
+/* 
+  .visible is added dynamically by IntersectionObserver via classList.add("visible")
+  so it must stay as a plain global class name — :global() tells CSS Modules not to hash it
+*/
+.homePageContainer section:global(.visible) {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.homePageContainer section:global(.visible)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  opacity: 0;
+  z-index: -1;
+  animation: flash 0.3s ease-out;
+}
+
+.homePageContainer section h2 {
+  font-size: 2.2em;
+  color: #2a4d69;
+  margin-bottom: 30px;
+  position: relative;
+  transition: text-shadow 0.3s ease;
+}
+
+.homePageContainer section:global(.visible) h2 {
+  text-shadow: 0 0 10px rgba(42, 77, 105, 0.5);
+}
+
+.homePageContainer section h2::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #3a8cea;
+  margin: 10px auto;
+  border-radius: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.homePageContainer section:global(.visible) h2::after {
+  transform: scaleX(1);
+}
+
+/* Flash Animation */
+@keyframes flash {
+  from {
+    opacity: 0.5;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .homePageContainer section {
+    padding: 30px 15px;
+  }
+}

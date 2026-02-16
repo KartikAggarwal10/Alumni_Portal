@@ -31,9 +31,22 @@ const AdminGiving = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Donation Submitted:", formData);
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await fetch("http://localhost:3000/admin-fill-giving", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+    alert(data.message);
+
+    fetchDonations(); // refresh list after adding
 
     setFormData({
       name: "",
@@ -44,7 +57,13 @@ const AdminGiving = () => {
       occupation: "",
       message: "",
     });
-  };
+
+  } catch (err) {
+    console.error("Error submitting donation:", err);
+    alert("Failed to submit donation");
+  }
+};
+
 
   return (
     <div className="add-achievement-container">

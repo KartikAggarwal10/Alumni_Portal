@@ -1,0 +1,538 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap');
+
+.forpddign {
+  padding-right: 100px;
+  padding-left: 100px;
+}
+
+.alumniCommunity {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 80px 32px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+  color: #26448b;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background decoration */
+.alumniCommunity::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(26, 115, 232, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.alumniCommunity::after {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(26, 115, 232, 0.03) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+/* Header Section */
+.alumniHeader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.alumniHeader h2 {
+ font-size: 2.2em;
+  color: #2a4d69;
+  position: relative;
+  transition: text-shadow 0.3s ease;
+  margin: 0;
+  text-align: center;
+  text-shadow: 0 0 10px rgba(42, 77, 105, 0.5);
+
+}
+
+.alumniHeader h2::after {
+   content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #3a8cea;
+  margin: 10px auto;
+  border-radius: 2px;
+  transform: scaleX(1);
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+
+@keyframes slideIn {
+  from {
+    width: 0;
+    opacity: 0;
+  }
+  to {
+    width: 80px;
+    opacity: 1;
+  }
+}
+
+/* View All Button */
+.viewAllBtn {
+  padding: 12px 28px;
+  background: white;
+  border: 2px solid #1a73e8;
+  color: #1a73e8;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 2px 8px rgba(26, 115, 232, 0.1);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.viewAllBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #1a73e8;
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+
+.viewAllBtn:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(26, 115, 232, 0.25);
+}
+
+.viewAllBtn:hover::before {
+  left: 0;
+}
+
+.viewAllBtn i {
+  transition: transform 0.3s ease;
+}
+
+.viewAllBtn:hover i {
+  transform: translateX(4px);
+}
+
+/* Sections Container */
+.sectionsContainer {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Section Card */
+.sectionCard {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  cursor: pointer;
+}
+
+.sectionCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #1a73e8, #4285f4);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sectionCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(26, 115, 232, 0.15);
+  border-color: #1a73e8;
+}
+
+.sectionCard:hover::before {
+  transform: scaleX(1);
+}
+
+/* Images Grid */
+.imagesGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 24px 20px 0 20px;
+  background: #ffffff;
+  position: relative;
+}
+
+.alumniImg {
+  width: 100%;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #f0f0f0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+}
+
+.alumniImg:hover {
+  transform: scale(1.08) translateY(-4px);
+  box-shadow: 0 8px 24px rgba(26, 115, 232, 0.2);
+  border-color: #1a73e8;
+  z-index: 10;
+}
+
+/* Section Title */
+.sectionTitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #202124;
+  margin: 0;
+  padding: 20px 24px 12px 24px;
+  line-height: 1.4;
+  text-align: center;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.sectionCard:hover .sectionTitle {
+  color: #1a73e8;
+}
+
+/* See More Button */
+.seeMoreBtn {
+  display: block;
+  margin: 0 auto 24px auto;
+  padding: 11px 36px;
+  background: transparent;
+  border: 2px solid #1a73e8;
+  color: #1a73e8;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.seeMoreBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: #1a73e8;
+  transition: left 0.4s ease;
+  z-index: -1;
+}
+
+.seeMoreBtn:hover {
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(26, 115, 232, 0.25);
+}
+
+.seeMoreBtn:hover::before {
+  left: 0;
+}
+
+.seeMoreBtn:active {
+  transform: translateY(0);
+}
+
+/* Stats Badge */
+.alumniCountBadge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: linear-gradient(135deg, #1a73e8, #4285f4);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(26, 115, 232, 0.3);
+  z-index: 5;
+}
+
+/* Loading Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.sectionCardLoading {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 0%,
+    #e8e8e8 50%,
+    #f0f0f0 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Responsive Design */
+
+/* Large Desktop */
+@media (max-width: 1400px) {
+  .forpddign {
+    padding-right: 60px;
+    padding-left: 60px;
+  }
+}
+
+/* Desktop */
+@media (max-width: 1200px) {
+  .forpddign {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+  .sectionsContainer {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+  }
+  .alumniHeader h2 {
+    font-size: 2.2em;
+  }
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  .forpddign {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+  .alumniCommunity {
+    padding: 64px 24px;
+  }
+  .sectionsContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+  .alumniHeader h2 {
+    font-size: 2rem;
+  }
+  .imagesGrid {
+    padding: 20px 16px 0 16px;
+    gap: 8px;
+  }
+  .alumniImg {
+    height: 80px;
+  }
+}
+
+/* Mobile Landscape / Small Tablet */
+@media (max-width: 768px) {
+  .forpddign {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+  .alumniCommunity {
+    padding: 48px 16px;
+  }
+  .alumniHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  .alumniHeader h2 {
+    font-size: 1.8rem;
+    width: 100%;
+  }
+  .viewAllBtn {
+    width: 100%;
+    justify-content: center;
+  }
+  .sectionsContainer {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .sectionTitle {
+    font-size: 16px;
+    padding: 18px 20px 10px 20px;
+  }
+  .seeMoreBtn {
+    width: calc(100% - 48px);
+    max-width: 320px;
+  }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+  .forpddign {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+  .alumniCommunity {
+    padding: 40px 12px;
+  }
+  .alumniHeader {
+    margin-bottom: 32px;
+  }
+  .alumniHeader h2 {
+    font-size: 1.5rem;
+  }
+  .alumniHeader h2::after {
+    width: 60px;
+    height: 3px;
+    margin: 10px 0 0 0;
+  }
+  .viewAllBtn {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+  .sectionsContainer {
+    gap: 20px;
+  }
+  .sectionCard {
+    border-radius: 14px;
+  }
+  .imagesGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 16px;
+  }
+  .alumniImg {
+    height: 90px;
+    border-radius: 10px;
+    border-width: 2px;
+  }
+  /* Show only 6 images on mobile */
+  .alumniImg:nth-child(n + 7) {
+    display: none;
+  }
+  .sectionTitle {
+    font-size: 15px;
+    padding: 14px 16px 10px 16px;
+    font-weight: 600;
+  }
+  .seeMoreBtn {
+    width: calc(100% - 32px);
+    padding: 10px 24px;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 375px) {
+  .alumniHeader h2 {
+    font-size: 1.35rem;
+  }
+  .alumniImg {
+    height: 85px;
+  }
+  .sectionTitle {
+    font-size: 14px;
+  }
+}
+
+/* Focus states for accessibility */
+.sectionCard:focus-within {
+  outline: 3px solid rgba(26, 115, 232, 0.3);
+  outline-offset: 2px;
+}
+
+.seeMoreBtn:focus,
+.viewAllBtn:focus {
+  outline: 3px solid rgba(26, 115, 232, 0.3);
+  outline-offset: 2px;
+}
+
+.alumniImg:focus {
+  outline: 2px solid #1a73e8;
+  outline-offset: 2px;
+  transform: scale(1.05);
+}
+
+/* Print styles */
+@media print {
+  .alumniCommunity {
+    background: white;
+    padding: 20px;
+  }
+  .viewAllBtn,
+  .seeMoreBtn {
+    display: none;
+  }
+  .sectionCard {
+    break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+}
+
+/* Dark mode support */
+/* @media (prefers-color-scheme: dark) {
+  .alumniCommunity {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+    color: #e8e8e8;
+  }
+  .alumniHeader h2 {
+    color: #ffffff;
+  }
+  .sectionCard {
+    background: #2d2d2d;
+    border-color: #404040;
+  }
+  .sectionTitle {
+    color: #ffffff;
+  }
+  .viewAllBtn,
+  .seeMoreBtn {
+    background: #2d2d2d;
+    color: #4285f4;
+    border-color: #4285f4;
+  }
+  .alumniImg {
+    border-color: #404040;
+  }
+} */
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+a {
+  text-decoration: none;
+}

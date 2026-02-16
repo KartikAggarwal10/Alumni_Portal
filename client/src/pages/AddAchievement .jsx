@@ -46,7 +46,7 @@ const AddAchievement = () => {
         });
 
         try {
-            const response = await fetch('/add-ach', {
+            const response = await fetch('http://localhost:3000/add-ach', {
                 method: 'POST',
                 body: formDataToSend
             });

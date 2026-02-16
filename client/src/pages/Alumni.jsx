@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
-import './Alumni.css';
+import styles from './Alumni.module.css';
+
 const Alumni = () => {
     const [alumniData, setAlumniData] = useState({});
     const [loading, setLoading] = useState(true);
     const [selectedStudent, setSelectedStudent] = useState(null);
     const [expandedBatches, setExpandedBatches] = useState({});
     const [expandedBranches, setExpandedBranches] = useState({});
+    const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -36,6 +38,18 @@ const Alumni = () => {
             organized[alumni.batch][alumni.branch].push(alumni);
         });
         return organized;
+    };
+
+    const organizeIntoColumns = (data, numColumns = 3) => {
+        const batches = Object.keys(data).sort((a, b) => b - a);
+        const columns = Array.from({ length: numColumns }, () => []);
+        
+        batches.forEach((batch, index) => {
+            const columnIndex = index % numColumns;
+            columns[columnIndex].push(batch);
+        });
+        
+        return columns;
     };
 
     const toggleBatch = async (batch) => {
@@ -75,72 +89,261 @@ const Alumni = () => {
         setSelectedStudent(null);
     };
 
-    if (loading) return <div className="alumni-page-container" style={{ padding: '50px', textAlign: 'center' }}>Loading...</div>;
+    const getTotalAlumni = () => {
+        let total = 0;
+        Object.values(alumniData).forEach(branches => {
+            Object.values(branches).forEach(students => {
+                total += students.length;
+            });
+        });
+        return total;
+    };
+
+    const getTotalBatches = () => {
+        return Object.keys(alumniData).length;
+    };
+
+    if (loading) {
+        return (
+            <div className={styles.alumniPageContainer}>
+                <div className={styles.loadingSpinner}>
+                    <div className={styles.spinner}></div>
+                    <p>Loading Alumni Data...</p>
+                </div>
+            </div>
+        );
+    }
 
     return (
-        <div className="alumni-page-container">
-            {/* Intro Section */}
-            <div className="intro-section">
-                <h1>Welcome to Our Alumni Network</h1>
-                <p>Explore the vibrant community of IIIT Sonepat alumni, connect with past graduates, and celebrate the legacy of excellence that continues to shape our institute.</p>
+        <div className={styles.alumniPageContainer}>
+            {/* Hero Section */}
+            <div className={styles.heroSection}>
+                <div className={styles.heroOverlay}></div>
+                <div className={styles.heroContent}>
+                    <div className={styles.heroLeft}>
+                        <h1 className={styles.heroTitle}>Alumni Network</h1>
+                    </div>
+                    <div className={styles.heroRight}>
+                        <p className={styles.heroSubtitle}>
+                            Connect with thousands of accomplished alumni who are shaping the future across industries worldwide
+                        </p>
+                        <div className={styles.heroStats}>
+                            <div className={styles.statCard}>
+                                <div className={styles.statNumber}>{getTotalAlumni()}+</div>
+                                <div className={styles.statLabel}>Alumni</div>
+                            </div>
+                            <div className={styles.statCard}>
+                                <div className={styles.statNumber}>{getTotalBatches()}</div>
+                                <div className={styles.statLabel}>Batches</div>
+                            </div>
+                            <div className={styles.statCard}>
+                                <div className={styles.statNumber}>50+</div>
+                                <div className={styles.statLabel}>Countries</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* CTA Section */}
+            <div className={styles.ctaBanner}>
+                <div className={styles.ctaContent}>
+                    <div className={styles.ctaText}>
+                        <h2>Join Our Growing Community</h2>
+                        <p>Be part of a network that empowers, inspires, and creates opportunities</p>
+                    </div>
+                    <a href="/register" className={styles.ctaButton}>
+                        <span>Register Now</span>
+                        <i className="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            {/* Search Section */}
+            <div className={styles.searchSection}>
+                <div className={styles.searchContainer}>
+                    <i className={`fas fa-search ${styles.searchIcon}`}></i>
+                    <input
+                        type="text"
+                        placeholder="Search by name, batch, or branch..."
+                        className={styles.searchInput}
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
             </div>
 
             {/* Alumni Directory Section */}
-          <div className="alumni-container" id="alumniContainer">
-    <h2 className="section-title">Alumni Directory</h2>
-
-    {Object.keys(alumniData).length === 0 ? (
-        <p>No alumni data available yet.</p>
-    ) : (
-        <div className="years-grid">
-            {Object.keys(alumniData).map(batch => (
-                <div key={batch} className="year-section">
-                    <div className="year-header" onClick={() => toggleBatch(batch)}>
-                        Batch {batch}
-                    </div>
-                    {expandedBatches[batch] && (
-                        <div className="branch-list">
-                            {Object.keys(alumniData[batch]).map(branch => (
-                                <div key={branch} className="branch-section">
-                                    <div className="branch-header" onClick={() => toggleBranch(batch, branch)}>
-                                        {branch}
-                                    </div>
-                                    {(expandedBranches[`${batch}-${branch}`]) && (
-                                        <div className="student-list">
-                                            {alumniData[batch][branch].map((alumni, index) => (
-                                                <div key={index} className="student-item" onClick={() => openModal(alumni)}>
-                                                    {alumni.name}
-                                                </div>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </div>
-                    )}
+            <div className={styles.alumniDirectory}>
+                <div className={styles.directoryHeader}>
+                    <h2 className={styles.directoryTitle}>Alumni Directory</h2>
+                    <p className={styles.directorySubtitle}>Explore our alumni organized by batch and branch</p>
                 </div>
-            ))}
-        </div>
-    )}
-</div>
+
+                {Object.keys(alumniData).length === 0 ? (
+                    <div className={styles.emptyState}>
+                        <i className="fas fa-users"></i>
+                        <h3>No Alumni Data Available</h3>
+                        <p>Check back soon as we update our directory</p>
+                    </div>
+                ) : (
+                    <div className={styles.yearsGrid}>
+                        {organizeIntoColumns(alumniData).map((column, colIndex) => (
+                            <div key={colIndex} className={styles.gridColumn}>
+                                {column.map(batch => (
+                                    <div key={batch} className={styles.batchCard}>
+                                        <div
+                                            className={`${styles.batchHeader} ${expandedBatches[batch] ? styles.expanded : ''}`}
+                                            onClick={() => toggleBatch(batch)}
+                                        >
+                                            <div className={styles.batchInfo}>
+                                                <span className={styles.batchLabel}>Batch</span>
+                                                <span className={styles.batchYear}>{batch}</span>
+                                            </div>
+                                            <i className={`fas fa-chevron-${expandedBatches[batch] ? 'up' : 'down'} ${styles.batchIcon}`}></i>
+                                        </div>
+                                        
+                                        {expandedBatches[batch] && (
+                                            <div className={styles.batchContent}>
+                                                {Object.keys(alumniData[batch]).map(branch => (
+                                                    <div key={branch} className={styles.branchSection}>
+                                                        <div
+                                                            className={`${styles.branchHeader} ${expandedBranches[`${batch}-${branch}`] ? styles.expanded : ''}`}
+                                                            onClick={() => toggleBranch(batch, branch)}
+                                                        >
+                                                            <div className={styles.branchInfo}>
+                                                                <i className={`fas fa-graduation-cap ${styles.branchIcon}`}></i>
+                                                                <span className={styles.branchName}>{branch}</span>
+                                                                <span className={styles.studentCount}>
+                                                                    ({alumniData[batch][branch].length})
+                                                                </span>
+                                                            </div>
+                                                            <i className={`fas fa-chevron-${expandedBranches[`${batch}-${branch}`] ? 'up' : 'down'}`}></i>
+                                                        </div>
+                                                        
+                                                        {expandedBranches[`${batch}-${branch}`] && (
+                                                            <div className={styles.studentList}>
+                                                                {alumniData[batch][branch].map((alumni, index) => (
+                                                                    <div
+                                                                        key={index}
+                                                                        className={styles.studentItem}
+                                                                        onClick={() => openModal(alumni)}
+                                                                    >
+                                                                        <div className={styles.studentAvatar}>
+                                                                            {alumni.name.charAt(0).toUpperCase()}
+                                                                        </div>
+                                                                        <span className={styles.studentName}>{alumni.name}</span>
+                                                                        <i className={`fas fa-arrow-right ${styles.studentArrow}`}></i>
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+
             {/* Modal for Alumni Details */}
             {selectedStudent && (
-                <div className="modal" onClick={closeModal}>
-                    <div className="modal-content" onClick={e => e.stopPropagation()}>
-                        <span className="close-btn" onClick={closeModal}>×</span>
-                        <h2>{selectedStudent.name || "N/A"}</h2>
-                        <img
-                            src={selectedStudent.photo ? `/people/${selectedStudent.photo}` : ""}
-                            alt="Student Photo"
-                            id="studentPhoto"
-                            onError={(e) => { e.target.style.display = 'none' }}
-                        />
-                        <p><strong>Batch:</strong> {selectedStudent.batch || "N/A"}</p>
-                        <p><strong>Branch:</strong> {selectedStudent.branch || "N/A"}</p>
-                        <p><strong>Date of Birth:</strong> {selectedStudent.dob || "N/A"}</p>
-                        <p><strong>Address:</strong> {selectedStudent.address || "N/A"}</p>
-                        <p><strong>Contact No:</strong> {selectedStudent.contact || "N/A"}</p>
-                        <p><strong>Email ID:</strong> {selectedStudent.email || "N/A"}</p>
+                <div className={styles.modalOverlay} onClick={closeModal}>
+                    <div className={styles.modalContainer} onClick={e => e.stopPropagation()}>
+                        <button className={styles.modalClose} onClick={closeModal}>
+                            <i className="fas fa-times"></i>
+                        </button>
+                        
+                        <div className={styles.modalHeader}>
+                            <div className={styles.modalAvatarLarge}>
+                                {selectedStudent.photo ? (
+                                    <img
+                                        src={`/people/${selectedStudent.photo}`}
+                                        alt={selectedStudent.name}
+                                        onError={(e) => {
+                                            e.target.style.display = 'none';
+                                            e.target.nextSibling.style.display = 'flex';
+                                        }}
+                                    />
+                                ) : null}
+                                <div className={styles.modalAvatarPlaceholder}>
+                                    {selectedStudent.name.charAt(0).toUpperCase()}
+                                </div>
+                            </div>
+                            <h2 className={styles.modalName}>{selectedStudent.name}</h2>
+                            <div className={styles.modalBatchBranch}>
+                                <span className={styles.modalBadge}>{selectedStudent.batch}</span>
+                                <span className={styles.modalBadge}>{selectedStudent.branch}</span>
+                            </div>
+                        </div>
+
+                        <div className={styles.modalBody}>
+                            <div className={styles.infoGrid}>
+                                {selectedStudent.dob && (
+                                    <div className={styles.infoItem}>
+                                        <i className={`fas fa-birthday-cake ${styles.infoIcon}`}></i>
+                                        <div className={styles.infoContent}>
+                                            <span className={styles.infoLabel}>Date of Birth</span>
+                                            <span className={styles.infoValue}>{selectedStudent.dob}</span>
+                                        </div>
+                                    </div>
+                                )}
+                                
+                                {selectedStudent.email && (
+                                    <div className={styles.infoItem}>
+                                        <i className={`fas fa-envelope ${styles.infoIcon}`}></i>
+                                        <div className={styles.infoContent}>
+                                            <span className={styles.infoLabel}>Email</span>
+                                            <a href={`mailto:${selectedStudent.email}`} className={`${styles.infoValue} ${styles.infoLink}`}>
+                                                {selectedStudent.email}
+                                            </a>
+                                        </div>
+                                    </div>
+                                )}
+                                
+                                {selectedStudent.contact && (
+                                    <div className={styles.infoItem}>
+                                        <i className={`fas fa-phone ${styles.infoIcon}`}></i>
+                                        <div className={styles.infoContent}>
+                                            <span className={styles.infoLabel}>Contact</span>
+                                            <a href={`tel:${selectedStudent.contact}`} className={`${styles.infoValue} ${styles.infoLink}`}>
+                                                {selectedStudent.contact}
+                                            </a>
+                                        </div>
+                                    </div>
+                                )}
+                                
+                                {selectedStudent.address && (
+                                    <div className={`${styles.infoItem} ${styles.infoItemFullWidth}`}>
+                                        <i className={`fas fa-map-marker-alt ${styles.infoIcon}`}></i>
+                                        <div className={styles.infoContent}>
+                                            <span className={styles.infoLabel}>Address</span>
+                                            <span className={styles.infoValue}>{selectedStudent.address}</span>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className={styles.modalFooter}>
+                            <button
+                                className={`${styles.modalActionBtn} ${styles.modalActionBtnPrimary}`}
+                                onClick={() => window.location.href = `mailto:${selectedStudent.email}`}
+                            >
+                                <i className="fas fa-envelope"></i>
+                                Send Email
+                            </button>
+                            <button
+                                className={`${styles.modalActionBtn} ${styles.modalActionBtnSecondary}`}
+                                onClick={closeModal}
+                            >
+                                Close
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}
