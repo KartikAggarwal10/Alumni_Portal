@@ -18,11 +18,9 @@ const Events = () => {
         eventType: '',
         eventDescription: ''
     });
-
     useEffect(() => {
         fetchEvents();
     }, []);
-
     const fetchEvents = async () => {
         try {
             const response = await api.get('/dmvnt-pi');

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./CareerOpportunities.module.css";
+import styles from "./Careeropportunities.module.css";
 
 const CareerOpportunities = () => {
   const jobs = [

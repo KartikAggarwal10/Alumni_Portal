@@ -7,12 +7,9 @@ import Features from "./FeaturesDumy";
 import HomeSlider from "./slider";
 import AlumniStories from "./AlumniStories";
 import CareerOpportunities from "./Careeropportunities";
-import AlumniCommunity from "./Alumnicommunity";
-
+import AlumniCommunity from "./AlumniCommunity";
 export default function HomeDumy() {
     useEffect(() => {
-        // Section fade-in on scroll
-        // "visible" is added as a plain string — matched by :global(.visible) in the CSS module
         const observer = new IntersectionObserver(
             entries => {
                 entries.forEach(entry => {

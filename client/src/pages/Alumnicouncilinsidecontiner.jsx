@@ -70,18 +70,18 @@ function AlumniCouncil() {
   return (
     <div className={styles.container}>
       <h1 className={styles.pageTitle}>Alumni Council 2025–27</h1>
-      
+
       <div className={styles.councilGrid}>
         {councilMembers.map((member) => (
-          <div 
-            key={member.id} 
-            className={styles.councilCard} 
+          <div
+            key={member.id}
+            className={styles.councilCard}
             onClick={() => viewProfile(member.id)}
           >
             <div className={styles.cardImageContainer}>
-              <img 
-                src={member.image} 
-                alt={member.name} 
+              <img
+                src={member.image}
+                alt={member.name}
                 className={styles.cardImage}
               />
             </div>
@@ -91,7 +91,7 @@ function AlumniCouncil() {
               <p className={styles.memberPosition}>{member.position}</p>
               <a href="/ProfilePage">
                 <button className={styles.viewProfileBtn}>View Profile</button>
-              </a> 
+              </a>
             </div>
           </div>
         ))}
