@@ -773,7 +773,9 @@ app.post('/send-emails', (req, res) => {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'alumni-email-system', 'public', 'index.html'));
 });
-const port=process.env.PORT || 3000
-app.listen(port, '0.0.0.0', () => {
-  console.log(`Server running at http://localhost:${port} or http://127.0.0.1:${port}`);
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
+
