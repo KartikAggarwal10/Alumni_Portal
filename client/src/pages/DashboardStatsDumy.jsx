@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./DashboardStats.module.css";
 import api from "../api";
-
+import { Link } from "react-router-dom";
 export default function DashboardStats() {
     const navigate = useNavigate();
 
@@ -76,25 +76,25 @@ export default function DashboardStats() {
                     <img src="/people/photo1.jpg" alt="Members Icon" />
                     <h3 id="memberNumber" data-count="499">0+</h3>
                     <p>Members</p>
-                    <Link href="/members" className={styles.btn}><span>View Details</span></Link>
+                    <Link to="/members" className={styles.btn}><span>View Details</span></Link>
                 </div>
                 <div className={styles.statItem} style={{ "--index": 1 }}>
                     <img src="/people/company.jpeg" alt="Companies Icon" />
                     <h3 id="companyNumber" data-count="49">0+</h3>
                     <p>Companies</p>
-                    <Link href="/companies" className={styles.btn}><span>View Details</span></Link>
+                    <Link to="/companies" className={styles.btn}><span>View Details</span></Link>
                 </div>
                 <div className={styles.statItem} style={{ "--index": 2 }}>
                     <img src="/people/achievementicon.jpg" alt="Achievements Icon" />
                     <h3 id="achievementNumber" data-count="19">0+</h3>
                     <p>Achievements</p>
-                    <Link href="/ach" className={styles.btn}><span>View Details</span></Link>
+                    <Link to="/ach" className={styles.btn}><span>View Details</span></Link>
                 </div>
                 <div className={styles.statItem} style={{ "--index": 3 }}>
                     <img src="/people/country.jpeg" alt="Countries Icon" />
                     <h3 id="countryNumber" data-count="9">0+</h3>
                     <p>Countries</p>
-                    <Link href="/countries" className={styles.btn}><span>View Details</span></Link>
+                    <Link to="/countries" className={styles.btn}><span>View Details</span></Link>
                 </div>
             </div>
         </section>
