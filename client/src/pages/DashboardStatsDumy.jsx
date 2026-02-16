@@ -5,9 +5,7 @@ import api from "../api";
 import { Link } from "react-router-dom";
 export default function DashboardStats() {
     const navigate = useNavigate();
-
     useEffect(() => {
-        // Animated Counter Logic
         const animateCounter = (counter, target) => {
             if (!counter) return;
             let count = 0;
