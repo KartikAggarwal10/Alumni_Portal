@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import styles from "./dumyhome.module.css";
+import styles from "./DumyHome.module.css";
 import DashboardStats from "./DashboardStatsDumy";
 import RecentUpdates from "./RecentUpdatesDumy";
 import Testimonials from "./TestimonialsDumy";
