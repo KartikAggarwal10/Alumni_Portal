@@ -23,7 +23,6 @@ export default function DashboardStats() {
             };
             updateCount();
         };
-
         // Fetch Dashboard Stats from /updte
         function loadDashboardStats() {
             api.get("/updte")
@@ -77,25 +76,25 @@ export default function DashboardStats() {
                     <img src="/people/photo1.jpg" alt="Members Icon" />
                     <h3 id="memberNumber" data-count="499">0+</h3>
                     <p>Members</p>
-                    <a href="/members" className={styles.btn}><span>View Details</span></a>
+                    <Link href="/members" className={styles.btn}><span>View Details</span></Link>
                 </div>
                 <div className={styles.statItem} style={{ "--index": 1 }}>
                     <img src="/people/company.jpeg" alt="Companies Icon" />
                     <h3 id="companyNumber" data-count="49">0+</h3>
                     <p>Companies</p>
-                    <a href="/companies" className={styles.btn}><span>View Details</span></a>
+                    <Link href="/companies" className={styles.btn}><span>View Details</span></Link>
                 </div>
                 <div className={styles.statItem} style={{ "--index": 2 }}>
                     <img src="/people/achievementicon.jpg" alt="Achievements Icon" />
                     <h3 id="achievementNumber" data-count="19">0+</h3>
                     <p>Achievements</p>
-                    <a href="/ach" className={styles.btn}><span>View Details</span></a>
+                    <Link href="/ach" className={styles.btn}><span>View Details</span></Link>
                 </div>
                 <div className={styles.statItem} style={{ "--index": 3 }}>
                     <img src="/people/country.jpeg" alt="Countries Icon" />
                     <h3 id="countryNumber" data-count="9">0+</h3>
                     <p>Countries</p>
-                    <a href="/countries" className={styles.btn}><span>View Details</span></a>
+                    <Link href="/countries" className={styles.btn}><span>View Details</span></Link>
                 </div>
             </div>
         </section>

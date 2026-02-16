@@ -20,11 +20,9 @@ export default function HomeDumy() {
             },
             { threshold: 0.1 }
         );
-
         document.querySelectorAll("section").forEach(sec =>
             observer.observe(sec)
         );
-
         // Cleanup function to prevent memory leaks
         return () => {
             observer.disconnect();
