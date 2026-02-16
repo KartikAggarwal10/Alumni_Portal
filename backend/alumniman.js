@@ -47,7 +47,7 @@ app.get('/', (req, res) => {
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://alumni-portal-kw5v.vercel.app/"
+    "https://alumni-portal-kw5v.vercel.app"
   ],
   credentials: true
 }));

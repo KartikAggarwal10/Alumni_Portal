@@ -7,7 +7,7 @@ import Features from "./FeaturesDumy";
 import HomeSlider from "./slider";
 import AlumniStories from "./AlumniStories";
 import CareerOpportunities from "./Careeropportunities";
-import AlumniCommunity from "./AlumniCommunity";
+import AlumniCommunity from "./Alumnicommunity";
 export default function HomeDumy() {
     useEffect(() => {
         const observer = new IntersectionObserver(

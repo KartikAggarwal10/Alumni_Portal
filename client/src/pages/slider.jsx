@@ -8,10 +8,6 @@ const HomeSlider = () => {
   const [events, setEvents] = useState([]);
   const [leftIndex, setLeftIndex] = useState(0);
   const [rightIndex, setRightIndex] = useState(0);
-
-  // ========================================
-  // CUSTOMIZE RIGHT SIDE HERE
-  // ========================================
   const rightSliderData = [
     {
       image: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800",
@@ -28,16 +24,7 @@ const HomeSlider = () => {
       title: "Leadership Recognition",
       subtitle: "Student Council 2024"
     },
-    // Add more items here as needed
-    // {
-    //   image: "YOUR_IMAGE_URL_HERE",
-    //   title: "YOUR_TITLE_HERE",
-    //   subtitle: "YOUR_SUBTITLE_HERE"
-    // },
   ];
-  // ========================================
-
-  // Fetch Data for Left Slider
   useEffect(() => {
     api.get("/gly-updpi")
       .then((res) => {
