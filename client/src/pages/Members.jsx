@@ -87,7 +87,7 @@ const Members = () => {
                     <div className="members-list" id="membersList">
                         {filteredMembers.map((member, index) => {
                             const photoUrl = member.photo
-                                ? `/people/${member.photo}`
+                                ? `${import.meta.env.VITE_API_URL}/people/${member.photo}`
                                 : "https://tg-stockach.de/wp-content/uploads/2020/12/5f4d0f15338e20133dc69e95_dummy-profile-pic-300x300.png";
                             return (
                                 <div key={index} className="member-block">

@@ -31,14 +31,13 @@ const Achievements = () => {
     return (
         <div className="achievements-page-container">
             {/* Navbar */}
-            
             <section className="achievements-section">
                 <h1>Alumni Achievements</h1>
                 <div className="achievements-list">
                     {achievements.map((ach, index) => (
                         <div key={index} className="achievement-card" onClick={() => handleCardClick(ach)}>
                             <img
-                                src={ach.photo ? `/people/${ach.photo}` : "https://via.placeholder.com/100"}
+                                src={ach.photo ? `${import.meta.env.VITE_API_URL}/people/${ach.photo}` : "https://via.placeholder.com/100"}
                                 alt={ach.name}
                             />
                             <h2>{ach.achievementTitle}</h2>

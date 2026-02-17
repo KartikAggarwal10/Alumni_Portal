@@ -31,7 +31,7 @@ const Gallery = () => {
                 items.forEach(item => {
                     formattedItems.push({
                         category: item.category,
-                        imageUrl: item.imageUrl ? `/people/${item.imageUrl}` : '/default-image.jpg',
+                        imageUrl: item.imageUrl ? `${import.meta.env.VITE_API_URL}/people/${item.imageUrl}` : '/default-image.jpg',
                         caption: item.caption || "No caption available"
                     });
                 });
@@ -64,7 +64,6 @@ const Gallery = () => {
     const closeLightbox = () => {
         setLightboxOpen(false);
     };
-
     return (
         <div className="gallery-page-container">
             <div className="main-content">
@@ -87,7 +86,6 @@ const Gallery = () => {
                             </button>
                         ))}
                     </div>
-
                     <div id="gallerySections">
                         {loading ? (
                             <p style={{ textAlign: 'center' }}>Loading...</p>
@@ -126,9 +124,7 @@ const Gallery = () => {
                     />
                 </div>
             )}
-
             {/* Footer */}
-           
         </div>
     );
 };

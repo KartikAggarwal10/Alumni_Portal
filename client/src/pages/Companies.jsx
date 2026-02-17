@@ -90,7 +90,7 @@ const Companies = () => {
 
       <div className="alumni-detail-popup">
         <img
-          src={selectedAlumni.photo ? `/people/${selectedAlumni.photo}` : "https://via.placeholder.com/100"}
+          src={selectedAlumni.photo ? `${import.meta.env.VITE_API_URL}/people/${selectedAlumni.photo}` : "https://via.placeholder.com/100"}
           alt={selectedAlumni.name}
         />
         <h3>{selectedAlumni.name}</h3>

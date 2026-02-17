@@ -58,10 +58,7 @@ const Alumni = () => {
             const isLoggedIn = isLoggedInResponse.data.loggedIn;
 
             if (!isLoggedIn) {
-                if (window.confirm("You need to be logged in to view alumni details. Login now?")) {
-                    navigate('/login');
-                }
-                return;
+                console.log("not logged")
             }
         } catch (err) {
             console.error("Login check failed", err);
@@ -262,7 +259,7 @@ const Alumni = () => {
                             <div className={styles.modalAvatarLarge}>
                                 {selectedStudent.photo ? (
                                     <img
-                                        src={`/people/${selectedStudent.photo}`}
+                                        src={`${import.meta.env.VITE_API_URL}/people/${selectedStudent.photo}`}
                                         alt={selectedStudent.name}
                                         onError={(e) => {
                                             e.target.style.display = 'none';
