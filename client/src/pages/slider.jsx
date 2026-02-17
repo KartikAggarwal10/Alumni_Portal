@@ -81,7 +81,7 @@ const HomeSlider = () => {
           <>
             <img
               key={`meetup-${leftIndex}`}
-              src={`/people/${meetups[leftIndex].imageUrl}`}
+              src={`${import.meta.env.VITE_API_URL}/people/${meetups[leftIndex].imageUrl}`}
               alt={meetups[leftIndex].caption}
               onError={(e) => {
                 console.error("Image load error:", e.target.src);

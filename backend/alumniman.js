@@ -39,7 +39,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 //app.use('/people', express.static(path.join(__dirname, 'people')));
 //app.use(express.static(path.join(__dirname, 'alumni-email-system', 'public')));
-app.use(express.static(path.join(__dirname, 'client', 'build')));
+//app.use(express.static(path.join(__dirname, 'client', 'build')));
+app.use("/people", express.static(path.join(__dirname, "people")));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, "homee.html"));
 })
