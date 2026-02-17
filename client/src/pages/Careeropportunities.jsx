@@ -34,7 +34,7 @@ const CareerOpportunities = () => {
       {/* Header */}
       <div className={styles.header}>
         <h2>Career Opportunities</h2>
-        <Link href="/OpportunitiesPage">
+        <Link to="/OpportunitiesPage">
           <button className={styles.viewAllBtn}>View All</button>
         </Link>
       </div>

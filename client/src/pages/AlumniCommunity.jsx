@@ -84,7 +84,7 @@ const AlumniCommunity = () => {
                 ))}
               </div>
               <h3 className={styles.sectionTitle}>{section.title}</h3>
-              <Link href="/AlumniCouncil">
+              <Link to="/AlumniCouncil">
                 <button className={styles.seeMoreBtn}>See More</button>
               </Link>
             </div>
