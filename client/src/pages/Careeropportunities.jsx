@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Careeropportunities.module.css";
-
+import { Link } from "react-router-dom";
 const CareerOpportunities = () => {
   const jobs = [
     {
@@ -34,9 +34,9 @@ const CareerOpportunities = () => {
       {/* Header */}
       <div className={styles.header}>
         <h2>Career Opportunities</h2>
-        <a href="/OpportunitiesPage">
+        <Link href="/OpportunitiesPage">
           <button className={styles.viewAllBtn}>View All</button>
-        </a>
+        </Link>
       </div>
 
       {/* Jobs Grid */}
@@ -60,13 +60,11 @@ const CareerOpportunities = () => {
               <span className={styles.icon}>📍</span>
               <span>{job.location}</span>
             </div>
-
             {/* Experience */}
             <div className={styles.jobInfo}>
               <span className={styles.icon}>💼</span>
               <span>{job.experience}</span>
             </div>
-
             {/* View Details Button */}
             <button className={styles.viewDetailsBtn}>View Details</button>
           </div>

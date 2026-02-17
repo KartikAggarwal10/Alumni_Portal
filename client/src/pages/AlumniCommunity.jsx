@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./AlumniCommunity.module.css";
-
+import { Link } from "react-router-dom";
 const AlumniCommunity = () => {
   const sections = [
     {
@@ -84,9 +84,9 @@ const AlumniCommunity = () => {
                 ))}
               </div>
               <h3 className={styles.sectionTitle}>{section.title}</h3>
-              <a href="/AlumniCouncil">
+              <Link href="/AlumniCouncil">
                 <button className={styles.seeMoreBtn}>See More</button>
-              </a>
+              </Link>
             </div>
           ))}
         </div>
